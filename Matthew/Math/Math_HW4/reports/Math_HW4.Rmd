@@ -31,7 +31,7 @@ As n approaches infinity, the shape would approach a circle.
 
 ## (a)
 **Answer:**\newline
-
+32
 
 **Work:**\newline
 
@@ -46,27 +46,67 @@ $$32.$$
 
 ## (b)
 **Answer:**\newline
-
+Limit is 0. Approaches but never quite gets there from the left nor right.
 
 **Work:**\newline
+$$\lim_{y \to \infty} \frac {1} {y^6}$$
+```{r, results='hold'}
+# check work
+1 / 2^6
+1 / 4^6
+1 / 20^6
+1 / -2^6
+1 / -4^6
+1 / -20^6
+```
 
 ## (c)
 **Answer:**\newline
-
+Positive infinity. The larger the absolute value of z, the larger the quotient. 
 
 **Work:**\newline
+$$\lim_{z \to 0} \frac {1} {z^6}$$
+```{r, results='hold'}
+# check work
+1 / 1^6
+1 / 0.5^6
+1 / 0.01^6
+1 / (-1)^6
+1 / (-0.5)^6
+1 / (-0.01)^6
+```
+
 
 ## (d)
 **Answer:**\newline
-
+The limit is 0.
 
 **Work:**\newline
+```{r, results='hold'}
+# check work
+2*2 / 6 * (2^2)
+2*5 / 6 * (5^2)
+2*10 / 6 * (10^2)
+2*1 / 6 * (1^2)
+2*0.1 / 6 * (0.1^2)
+2*0.0001 / 6 * (0.001^2)
+```
+Could also solve this way:\newline
+$$\lim_{x \to 0} \frac {2x + 3} {5x^2},$$\newline
+$$\lim_{x \to 0} \frac {2x} {5x^2}  +\frac {3} {5x^2},$$\newline
+$$\lim_{x \to 0} \frac {2} {5x}  +\frac {3} {5x^2},$$\newline
+$$\lim_{x \to 0} \frac {2} {5x}  + \lim_{x \to 0} \frac {3} {5x^2},$$\newline
+$$\frac {2} {5} \lim_{x \to 0} \frac {1} {x}  + \frac {3} {5} \lim_{x \to 0} \frac {1} {x^2},$$\newline
+$$\frac {2} {5} \lim_{x \to 0} \frac {1} {x}  + \frac {3} {5} \lim_{x \to 0} \frac {1} {x^2},$$\newline
+The limits to $\frac {1} {x}$ and $\frac {1} {x^2}$ are 0.
+
 
 ## (e)
 **Answer:**\newline
 
 
 **Work:**\newline
+
 
 ## (f)
 **Answer:**\newline
