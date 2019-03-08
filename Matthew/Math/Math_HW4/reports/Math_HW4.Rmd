@@ -35,6 +35,15 @@ As n approaches infinity, the shape would approach a circle.
 
 **Work:**\newline
 
+$$\lim_{x \to 5} 2x^2 - 5x + 7,$$\newline
+$$2(5^2) - 5(5) + 7,$$\newline
+$$32.$$
+
+```{r}
+# chck work
+2*(5)^2 - (5*5) + 7
+```
+
 ## (b)
 **Answer:**\newline
 
