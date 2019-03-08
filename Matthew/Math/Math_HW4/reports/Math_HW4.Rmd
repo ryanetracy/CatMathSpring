@@ -18,6 +18,9 @@ library(ProjectTemplate); load.project()
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = NA)
 options(scipen = 999)
+knitr::opts_chunk$set(engine.path = "/anaconda3/bin/python")
+np <- reticulate::import("numpy")
+sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
 ```
 
 4.1, 4.2, 4.3, 4.4, 4.5, 4.6
@@ -103,17 +106,40 @@ The limits to $\frac {1} {x}$ and $\frac {1} {x^2}$ are 0.
 
 ## (e)
 **Answer:**\newline
-
+$\frac {3} {5}$
 
 
 **Work:**\newline
+We know that the limit of $\frac {1} {x^y} = 0$, so we can reduce many of the terms of the expression to 0s by making them into the form of $\frac {1} {x^y} = 0$.
+
+$$ \lim_{y \to \infty} \frac {3y^7 + 4y^6 - 2y^5 - 8y^3 - 7y + 1} {2y^7 + y^3 - 8} \times \frac { \frac {1} {y^7} } {\frac {1} {y^7} },$$\newline
+$$ = \lim_{y \to \infty} \frac {3y^7 + \frac {4} {y} - \frac {2} {y^2} - \frac {8} {y^4} - \frac {7} {y^6} + \frac {1} {y^7}} {2 + \frac {1} {4y^4} - \frac {8} {y^7}},$$\newline
+$$ = \frac {3} {5}.$$\newline
 
 
 ## (f)
 **Answer:**\newline
-
+The limit is 1.
 
 **Work:**\newline
+
+Do some factoring
+$$\lim_{z \to 3} \frac {z^2 - 5z + 6} {z - 3},$$\newline
+
+
+$$=\lim_{z \to 3} \frac {(z-2)(z-3)} {z - 3},$$\newline
+$$ = \lim_{z \to 3} z-2 = 1$$\newline
+
+```{python}
+# check work
+import sympy
+from sympy import *
+x, y, z = symbols('x y z')
+init_printing(use_unicode=True)
+expr = Limit((z - 2)*(z - 3) / (z - 3), z, 3)
+# find the limit
+print(expr.doit())
+```
 
 ## (g)
 **Answer:**\newline
