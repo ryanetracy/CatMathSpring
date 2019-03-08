@@ -1,7 +1,7 @@
 ---
-title: "Temporary Name"
+title: "HW 4"
 author: "Matthew Vanaman"
-date: "Temporary Date"
+date: "03/11/19"
 monofont: Courier New
 output:
   pdf_document: 
@@ -19,3 +19,8 @@ library(ProjectTemplate); load.project()
 knitr::opts_chunk$set(echo = TRUE, comment = NA)
 options(scipen = 999)
 ```
+
+4.1, 4.2, 4.3, 4.4, 4.5, 4.6
+
+# 4.1
+
