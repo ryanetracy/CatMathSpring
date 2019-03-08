@@ -24,3 +24,61 @@ options(scipen = 999)
 
 # 4.1
 
+**Answer:**\newline
+As n approaches infinity, the shape would approach a circle. 
+
+# 4.2
+
+## (a)
+**Answer:**\newline
+
+
+**Work:**\newline
+
+## (b)
+**Answer:**\newline
+
+
+**Work:**\newline
+
+## (c)
+**Answer:**\newline
+
+
+**Work:**\newline
+
+## (d)
+**Answer:**\newline
+
+
+**Work:**\newline
+
+## (e)
+**Answer:**\newline
+
+
+**Work:**\newline
+
+## (f)
+**Answer:**\newline
+
+
+**Work:**\newline
+
+## (g)
+**Answer:**\newline
+
+
+**Work:**\newline
+
+## (h)
+**Answer:**\newline
+
+
+**Work:**\newline
+
+## (i)
+**Answer:**\newline
+
+
+**Work:**\newline
