@@ -30,6 +30,39 @@ A2.33 (5 points)
 
 ## (a)
 **Answer:**\newline
-Sensitivity denotes the conditional probability of not having the disease given a negative diagnosis. In a sense, this captures the test's ability to accurately diagnose a patient that does not have the disease. We therefore know that the conditional probability of not having the disease given a patient were given a positive diagnosis is 1 - specificity, as this captures the noise of the test. A good test would want to show that 1 - specificity yields a large probability, as an effective test will have a large probability of correctly diagnosing a patient that does not have the disease. 
+Recoding this in a way that makes more sense to me. Will leave X and Y as they are:\newline
+$X (0 = \textrm {no disease}, 1 = \textrm {disease}$\newline
+
+$Y (0 = \textrm {negative}, 1 = \textrm {positive}$\newline
+
+$\textrm {SENSITIVITY} = \pi_1 = P(Y = 1|X = 1) = \textrm {probability of positive diagnosis given you actually have the disease}$\newline
+
+$\textrm {SPECIFICITY} = 1 - \pi_2 = 1 - P(Y = 1|X = 0) = \textrm {1 - the probability of positive diagnosis given you do not have disease}$\newline 
+
+After subtracting away the  probability of positive diagnosis given no disease, you are left with probability of negative diagnosis given no disease:\newline
+$1 - P(Y = 1|X = 0) =  P(Y = 0|X = 0) = \textrm {probability of negative diagnosis given you do not have the disease}$\newline
+
+Likewise, the "noise" of the test is captured by 1 - specificity. A good test would want to show that 1 - specificity yields a large probability as an effective test will have a large probability of correctly diagnosing a patient that does not have the disease. \newline
+
+## (b)
+**Answer:**\newline
+$P(X = 1|Y = 1) = \frac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 2) P(X = 2)}$\newline
+
+
 
 **Work:**\newline
+$$\frac {\pi_1 \gamma} {[ \pi_1 \gamma + \pi_2 (1 - \gamma) ]},$$\newline
+
+Using Bayes' rule:\newline
+
+$$P(A|B = \frac {P(B|A)P(A)} {P(B)}$$\newline
+
+In the above equation, P(B) represents P(X=1), or the probability of having the disease. But this is an  unknown value, expressed as $\gamma$. So we have to use a particular version of Bayes' rule that takes into account the conditional probabilities associated with P(B):
+$$P(A|B) = \frac {P(B|A)P(A)} {P(B|A)P(A) + P(B| \widetilde A) P(\widetilde A)}$$\newline
+
+
+Just replace with the problem's notation:
+$$P(X = 1|Y = 1) = \frac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 2) P(X = 2)}$$\newline
+
+## (c)
+
