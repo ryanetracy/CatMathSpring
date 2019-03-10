@@ -1,4 +1,4 @@
-setwd("~/Documents/Class/CatMathSpring/Matthew/CatData/CatData_HW4/CatData_HW4_directory")
+setwd("~/Documents/Class/CatMathSpring/Matthew/CatData/CatData_HW3/CatData_HW3_directory")
 library('ProjectTemplate')
 load.project()
 
