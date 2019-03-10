@@ -31,38 +31,53 @@ A2.33 (5 points)
 ## (a)
 **Answer:**\newline
 Recoding this in a way that makes more sense to me. Will leave X and Y as they are:\newline
-$X (0 = \textrm {no disease}, 1 = \textrm {disease}$\newline
 
-$Y (0 = \textrm {negative}, 1 = \textrm {positive}$\newline
-
-$\textrm {SENSITIVITY} = \pi_1 = P(Y = 1|X = 1) = \textrm {probability of positive diagnosis given you actually have the disease}$\newline
-
-$\textrm {SPECIFICITY} = 1 - \pi_2 = 1 - P(Y = 1|X = 0) = \textrm {1 - the probability of positive diagnosis given you do not have disease}$\newline 
+- $X (0 = \textrm {no disease}, 1 = \textrm {disease})$\newline
+- $Y (0 = \textrm {negative}, 1 = \textrm {positive})$\newline
+- $\textrm {Sensitivity} = \pi_1 = P(Y = 1|X = 1) = \textrm {probability positive diagnosis given disease}$\newline
+- $\textrm {Specificity} = 1 - \pi_2 = 1 - P(Y = 1|X = 0) = \textrm {1 - probability positive diagnosis given no disease}$\newline 
 
 After subtracting away the  probability of positive diagnosis given no disease, you are left with probability of negative diagnosis given no disease:\newline
-$1 - P(Y = 1|X = 0) =  P(Y = 0|X = 0) = \textrm {probability of negative diagnosis given you do not have the disease}$\newline
 
-Likewise, the "noise" of the test is captured by 1 - specificity. A good test would want to show that 1 - specificity yields a large probability as an effective test will have a large probability of correctly diagnosing a patient that does not have the disease. \newline
+$1 - P(Y = 1|X = 0) =  P(Y = 0|X = 0) = \textrm {probability negative diagnosis given no disease}$\newline
+
+Likewise, the "noise" of the test is captured by 1 - specificity. A good test would want to show that 1 - specificity yields a large probability as an effective test will have a large probability of correctly screening patients that do not have the disease. \newline
 
 ## (b)
 **Answer:**\newline
-$P(X = 1|Y = 1) = \frac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 2) P(X = 2)}$\newline
+$P(X = 1|Y = 1) = \dfrac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 0) P(X = 0)}$\newline
 
 
 
 **Work:**\newline
-$$\frac {\pi_1 \gamma} {[ \pi_1 \gamma + \pi_2 (1 - \gamma) ]},$$\newline
+$$\dfrac {\pi_1 \gamma} {[ \pi_1 \gamma + \pi_2 (1 - \gamma) ]} = \dfrac {P(B|A)P(A)} {P(B)} = \textrm {Bayes' rule}$$\newline
 
-Using Bayes' rule:\newline
-
-$$P(A|B = \frac {P(B|A)P(A)} {P(B)}$$\newline
-
-In the above equation, P(B) represents P(X=1), or the probability of having the disease. But this is an  unknown value, expressed as $\gamma$. So we have to use a particular version of Bayes' rule that takes into account the conditional probabilities associated with P(B):
-$$P(A|B) = \frac {P(B|A)P(A)} {P(B|A)P(A) + P(B| \widetilde A) P(\widetilde A)}$$\newline
-
-
+In the above equation, P(B) represents P(X=1), or the probability of having the disease. But this is an unknown value expressed as $\gamma$, we have to use a particular version of Bayes' rule that takes into account the conditional probabilities associated with P(B):\newline
+$$P(A|B) = \dfrac {P(B|A)P(A)} {P(B|A)P(A) + P(B| \widetilde A) P(\widetilde A)}.$$\newline
 Just replace with the problem's notation:
-$$P(X = 1|Y = 1) = \frac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 2) P(X = 2)}$$\newline
+$$P(X = 1|Y = 1) = \dfrac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 0) P(X = 0)}$$\newline
 
 ## (c)
+**Answer:**\newline
+0.07
 
+**Work:**\newline
+
+We need to solve for $P(X = 1 | Y = 1)$. Lay out the pieces:\newline
+
+- $X (0 = \textrm {no disease}, 1 = \textrm {disease}$.\newline
+- $P(X = 1) = 0.01$.\newline
+- $Y (0 = \textrm {negative}, 1 = \textrm {positive}$.\newline
+- $\textrm {Sensitivity} = \pi_1 = P(Y = 1|X = 1) = 0.86$.\newline
+- $\textrm {Specificity} = 1 - \pi_2 = 1 - P(Y = 1|X = 0) = 0.88$\newline 
+- If $1 - P(Y = 1|X = 0) = 0.88$, then $P(Y = 1|X = 0) = 0.12$.\newline
+- If $P(X = 1) = 0.01$, then $P(X = 0) = 1 - P(X = 1) = 0.99.$\newline
+
+Plug and chug:\newline
+$$P(X = 1|Y = 1) = \dfrac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 0) P(X = 0)},$$\newline
+$$ = \dfrac {0.86 \times 0.01} {(0.86 \times 0.01) + (0.12 \times 0.99)},$$\newline
+$$= 0.07.$$
+```{r}
+# calculations
+(0.86 * 0.01) / ((0.86 * 0.01) + (0.12 * 0.99))
+```
