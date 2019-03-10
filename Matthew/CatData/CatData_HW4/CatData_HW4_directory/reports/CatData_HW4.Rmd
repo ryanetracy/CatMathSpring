@@ -1,0 +1,21 @@
+---
+title: "Temporary Name"
+author: "Matthew Vanaman"
+date: "Temporary Date"
+monofont: Courier New
+output:
+  pdf_document: 
+    latex_engine: xelatex
+  word_document: default
+header-includes: \usepackage{tikz,xcolor,listings}
+---
+`r knitr::opts_knit$set(root.dir='..')`
+
+```{r, include=FALSE}
+library(ProjectTemplate); load.project()
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA)
+options(scipen = 999)
+```

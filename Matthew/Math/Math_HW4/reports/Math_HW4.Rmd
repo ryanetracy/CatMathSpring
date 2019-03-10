@@ -146,6 +146,10 @@ print(expr.doit())
 
 
 **Work:**\newline
+Need limit from the right:
+```{r, results = 'hold}
+1 / 
+```
 
 ## (h)
 **Answer:**\newline
