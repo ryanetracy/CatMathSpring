@@ -23,3 +23,13 @@ options(scipen = 999)
 A2.2, A2.5, A2.13, A2.21, A2.36. (3 points each)
 
 A2.33 (5 points)
+
+*All code and work are shown in the appendix.*
+
+# 2.2
+
+## (a)
+**Answer:**\newline
+Sensitivity denotes the conditional probability of not having the disease given a negative diagnosis. In a sense, this captures the test's ability to accurately diagnose a patient that does not have the disease. We therefore know that the conditional probability of not having the disease given a patient were given a positive diagnosis is 1 - specificity, as this captures the noise of the test. A good test would want to show that 1 - specificity yields a large probability, as an effective test will have a large probability of correctly diagnosing a patient that does not have the disease. 
+
+**Work:**\newline
