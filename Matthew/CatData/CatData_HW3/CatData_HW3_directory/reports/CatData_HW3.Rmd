@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE, comment = NA)
 options(scipen = 999)
 ```
 
-A2.2, A2.5, A2.13, A2.21, A2.36. (3 points each)
+A2.5, A2.13, A2.21, A2.36. (3 points each)
 
 A2.33 (5 points)
 
@@ -45,21 +45,22 @@ Likewise, the "noise" of the test is captured by 1 - specificity. A good test wo
 
 ## (b)
 **Answer:**\newline
-$P(X = 1|Y = 1) = \dfrac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 0) P(X = 0)}$\newline
+$P(X = 1|Y = 1) = \dfrac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 0) P(X = 0)}$.\newline
 
 
 
 **Work:**\newline
-$$\dfrac {\pi_1 \gamma} {[ \pi_1 \gamma + \pi_2 (1 - \gamma) ]} = \dfrac {P(B|A)P(A)} {P(B)} = \textrm {Bayes' rule}$$\newline
+$$\dfrac {\pi_1 \gamma} {[ \pi_1 \gamma + \pi_2 (1 - \gamma) ]} = \dfrac {P(B|A)P(A)} {P(B)} = \textrm {Bayes' rule}$$.\newline
 
 In the above equation, P(B) represents P(X=1), or the probability of having the disease. But this is an unknown value expressed as $\gamma$, we have to use a particular version of Bayes' rule that takes into account the conditional probabilities associated with P(B):\newline
 $$P(A|B) = \dfrac {P(B|A)P(A)} {P(B|A)P(A) + P(B| \widetilde A) P(\widetilde A)}.$$\newline
 Just replace with the problem's notation:
-$$P(X = 1|Y = 1) = \dfrac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 0) P(X = 0)}$$\newline
+$$P(X = 1|Y = 1) = \dfrac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 0) P(X = 0)}$$.\newline
 
 ## (c)
 **Answer:**\newline
-0.07
+0.07\newline
+
 
 **Work:**\newline
 
@@ -91,7 +92,8 @@ colnames(test) <- c('neg', 'pos', "RowMarg")
 rownames(test) <- c('nο_dis', 'dis')
 (test.table <- as.table(test))
 ```
-Sensitivity (0.88) tells us probability of positive diagnosis when someone has the disease. If 0.01 proportion of 100 people have the disease, and the probability of being correctly diagnosed with the disease if you have it is 0.86, then 0.0086 proportion of 100 people will be correctly diagnosed as having the disease. Likewise, the specificity (0.86) gives us the probability of negative diagnosis with no disease. So out of proportion 0.99 of 100 people who do not have the disease, proportion 0.8514 out of 100 will be correctly diagnosed as not having the disease. Most of the people with the disease are in the positive diagnosis cell, which is a good thing. However, we can see based on the column margin that only about 7% of those who get diagnosed actually have the disease. Needless stress!
+Sensitivity (0.88) tells us probability of positive diagnosis when someone has the disease. If 0.01 proportion of 100 people have the disease, and the probability of being correctly diagnosed with the disease if you have it is 0.86, then 0.0086 proportion of 100 people will be correctly diagnosed as having the disease. Likewise, the specificity (0.86) gives us the probability of negative diagnosis with no disease. So out of proportion 0.99 of 100 people who do not have the disease, proportion 0.8514 out of 100 will be correctly diagnosed as not having the disease. Most of the people with the disease are in the positive diagnosis cell, which is a good thing. However, we can see based on the column margin that only about 7% of those who get diagnosed actually have the disease. Needless stress!\newline
+
 
 **Work:**\newline
 We start with what we know:\newline
@@ -100,7 +102,7 @@ We start with what we know:\newline
 - $P(Y = 1|X = 0) = 0.12$.\newline
 - $P(X = 0) = 0.99.$\newline
 - $P(X = 1) = 0.01$
-```{r, echo=FALSE}
+```{r}
 test <- matrix(c("π_00","π_10","π_01","π_11",0.99,0.01), ncol=3)
 colnames(test) <- c('neg', 'pos', "RowMarg")
 rownames(test) <- c('nο_dis', 'dis')
@@ -124,7 +126,7 @@ Get the last cell:
 ```{r}
 0.99 - 0.8514
 ```
-```{r, echo= FALSE}
+```{r}
 test <- matrix(c("0.8514","0.0014","0.1386","0.0086",0.99,0.01), ncol=3)
 colnames(test) <- c('neg', 'pos', "RowMarg")
 rownames(test) <- c('nο_dis', 'dis')
@@ -136,3 +138,35 @@ rownames(test) <- c('nο_dis', 'dis')
 0.0086 + 0.0014
 0.1386 + 0.8514
 ```
+
+
+# 2.5
+
+## (a)
+
+**Answer:**\newline
+Relative risk,though depending on the circumstances, one can sometimes use the odds ratio as an estimate of the relative risk; in those cases, it could be both. If the odds of either men or women getting cancer were small, the odds ratio and risk ratio would be pretty similar.\newline
+
+## (b)
+
+### (i)
+**Answer:**\newline
+0.55\newline
+
+**Work:**\newline
+The risk ratio is just % increase or decrease in risk, relative to 1.00 (1.00 would mean equal risk in both groups because 1.00 indicates that the numerator and denominator of the ratio are the same). If we know the drug group was 45% less likely to get cancer, then we consider what a 45% decrease from 1 would be: 0.55. Say we start with no effect:
+$$RR = \dfrac {1} {1}.$$
+But we know the drug group was 45% less likely to get cancer:
+$$\dfrac {1 - 0.45} {1} = 0.55$$
+
+
+### (ii)
+**Answer:**\newline
+1.82\newline
+
+**Work:**\newline
+We found the numerator for the risk ratio in part i. To get the RR for the placebo group, we flip the fraction from the last problem over:
+```{r}
+1 / (1 - 0.45)
+```
+So the placebo group wa 82% more likely to get cancer.
