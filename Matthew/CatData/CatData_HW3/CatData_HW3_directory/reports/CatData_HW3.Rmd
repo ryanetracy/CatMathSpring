@@ -4,14 +4,14 @@ author: "Matthew Vanaman"
 date: "03/11/19"
 monofont: Courier New
 output:
-  pdf_document: 
-    latex_engine: xelatex
   word_document: default
+  pdf_document:
+    latex_engine: xelatex
 header-includes: \usepackage{tikz,xcolor,listings}
 ---
 `r knitr::opts_knit$set(root.dir='..')`
 
-```{r, include=FALSE}
+```{r, include=FALSE, cache=TRUE}
 library(ProjectTemplate); load.project()
 ```
 
@@ -78,7 +78,7 @@ Plug and chug:\newline
 $$P(X = 1|Y = 1) = \dfrac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 0) P(X = 0)},$$\newline
 $$ = \dfrac {0.86 \times 0.01} {(0.86 \times 0.01) + (0.12 \times 0.99)},$$\newline
 $$= 0.07.$$
-```{r}
+```{r, cache=TRUE}
 # calculations
 (0.86 * 0.01) / ((0.86 * 0.01) + (0.12 * 0.99))
 ```
@@ -86,13 +86,16 @@ $$= 0.07.$$
 ## (d)
 
 **Answer:**\newline
-```{r, echo= FALSE}
-test <- matrix(c("0.8514","0.0014","0.1386","0.0086",0.99,0.01), ncol=3)
-colnames(test) <- c('neg', 'pos', "RowMarg")
-rownames(test) <- c('nο_dis', 'dis')
-(test.table <- as.table(test))
+```{r, cache=TRUE, echo=FALSE}
+test <- matrix(c("0.8712","0.0014","0.1188","0.0086",0.99,0.01), ncol=3)
+colnames(test) <- c('Negative', 'Positive', "Row Margin")
+rownames(test) <- c('No Disease', 'Disease')
+test.table <- as.table(test)
+knitr::kable(test.table)
 ```
-Sensitivity (0.88) tells us probability of positive diagnosis when someone has the disease. If 0.01 proportion of 100 people have the disease, and the probability of being correctly diagnosed with the disease if you have it is 0.86, then 0.0086 proportion of 100 people will be correctly diagnosed as having the disease. Likewise, the specificity (0.86) gives us the probability of negative diagnosis with no disease. So out of proportion 0.99 of 100 people who do not have the disease, proportion 0.8514 out of 100 will be correctly diagnosed as not having the disease. Most of the people with the disease are in the positive diagnosis cell, which is a good thing. However, we can see based on the column margin that only about 7% of those who get diagnosed actually have the disease. Needless stress!\newline
+
+  
+  Sensitivity (0.86) is the probability of a positive diagnosis given someone has the disease. That is, 86% of those with the disease will be identified with a positive test result. If 0.01 is the probability of having the disease, then 0.0086 is the probability of having the disease and receiving a positive diagnosis. That is, if I do not know whether or not I have the disease, there is a .0086 probability I will both receive a positive test result and truly have the disease. On the other hand, the specificity (0.88) gives us the probability of negative diagnosis with no disease - that is, if I know I do not have the disease, the test will identify me as negative 88% of the time. Therefore, if I know nothing about my disease, the probability that I will have no disease and receive a negative result is 0.8514. Most of the people with the disease are in the positive diagnosis column, which is a good thing. However, we can see based on the column margin that only about 7% of those who get a positive result actually have the disease. Needless stress!\newline
 
 
 **Work:**\newline
@@ -102,38 +105,35 @@ We start with what we know:\newline
 - $P(Y = 1|X = 0) = 0.12$.\newline
 - $P(X = 0) = 0.99.$\newline
 - $P(X = 1) = 0.01$
-```{r}
-test <- matrix(c("π_00","π_10","π_01","π_11",0.99,0.01), ncol=3)
-colnames(test) <- c('neg', 'pos', "RowMarg")
-rownames(test) <- c('nο_dis', 'dis')
-(test.table <- as.table(test))
+```{r, echo=FALSE, cache=TRUE}
+test <- matrix(c("$\\pi_{00}$","$\\pi_{10}$","$\\pi_{01}$","$\\pi_{11}$",0.99,0.01), ncol=3)
+colnames(test) <- c('Negative', 'Positive', "Row Margin")
+rownames(test) <- c('No Disease', 'Disease')
+test.table <- as.table(test)
+knitr::kable(test.table)
 ```
-Sensitivity (0.88) tells us probability of positive diagnosis when someone has the disease. If 0.01 proportion of 100 people have the disease, and the probability of being correctly diagnosed with the disease if you have it is 0.86, then 0.0086 proportion of 100 people will be correctly diagnosed as having the disease:
-```{r}
+
+
+Probability of both having disease and getting positive result:
+```{r, cache=TRUE}
 0.01 * 0.86
 ```
 
 From there, because we have the margin and one of the cells, we have the other cell in that row:
-```{r}
+```{r, cache=TRUE}
 0.01 - 0.0086
 ```
 
-Likewise, the specificity (0.86) gives us the probability of negative diagnosis with no disease. So out of proportion 0.99 of 100 people who do not have the disease, proportion 0.8514 out of 100 will be correctly diagnosed as not having the disease:
-```{r}
+Probability of negative diagnosis and not having disease: 
+```{r, cache=TRUE}
 0.99 * 0.88
 ```
 Get the last cell:
-```{r}
-0.99 - 0.8514
-```
-```{r}
-test <- matrix(c("0.8514","0.0014","0.1386","0.0086",0.99,0.01), ncol=3)
-colnames(test) <- c('neg', 'pos', "RowMarg")
-rownames(test) <- c('nο_dis', 'dis')
-(test.table <- as.table(test))
+```{r, cache=TRUE}
+0.99 - 0.8712
 ```
 
-```{r}
+```{r, cache=TRUE}
 # check work
 0.0086 + 0.0014
 0.1386 + 0.8514
@@ -166,7 +166,7 @@ $$\dfrac {1 - 0.45} {1} = 0.55$$
 
 **Work:**\newline
 We found the numerator for the risk ratio in part i. To get the RR for the placebo group, we flip the fraction from the last problem over:
-```{r}
+```{r, cache=TRUE}
 1 / (1 - 0.45)
 ```
 So the placebo group wa 82% more likely to get cancer.
