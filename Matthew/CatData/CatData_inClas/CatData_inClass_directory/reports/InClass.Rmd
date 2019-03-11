@@ -1,0 +1,40 @@
+---
+title: "InClass"
+author: "Matthew Vanaman"
+date: "Various Dates"
+monofont: Courier New
+output:
+  pdf_document:
+    fig_caption: yes
+    latex_engine: xelatex
+  word_document: default
+header-includes: \usepackage{tikz,xcolor,listings}
+---
+
+`r knitr::opts_knit$set(root.dir='..')`
+
+```{r, include=FALSE, cache=TRUE}
+library(ProjectTemplate); load.project()
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA)
+options(scipen = 999)
+knitr::opts_chunk$set(engine.path = "/anaconda3/bin/python")
+np <- reticulate::import("numpy")
+sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
+```
+
+
+```{r, cache = FALSE, echo=FALSE}
+# make a contigency table
+freq <- matrix(c(48, 20, 35, 31,31,41, 5,33,65), ncol=3)
+colnames(freq) <- c('CTL', 'ASD', "AUT")
+rownames(freq) <- c('CP', 'INC', "NR")
+freq <- as.table(freq)
+chi2 <- chisq.test(freq)
+freq[] <- paste(freq,paste0("(",round(chi2$expected),")"))
+as.table(freq)
+chi2
+glm(c("CTL", "ASD", "AUT")~ c("CP", "INC", "NR"), data = freq)
+```
