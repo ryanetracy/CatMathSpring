@@ -18,9 +18,12 @@ library(ProjectTemplate); load.project()
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, comment = NA)
 options(scipen = 999)
+knitr::opts_chunk$set(engine.path = "/anaconda3/bin/python")
+np <- reticulate::import("numpy")
+sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
 ```
 
-A2.5, A2.13, A2.21, A2.36. (3 points each)
+A2.13, A2.21, A2.36. (3 points each)
 
 A2.33 (5 points)
 
@@ -170,3 +173,42 @@ We found the numerator for the risk ratio in part i. To get the RR for the place
 1 / (1 - 0.45)
 ```
 So the placebo group wa 82% more likely to get cancer.
+
+
+# 2.13
+
+## (a)
+**Answer:**\newline
+(−0.018, 0.061). \newline
+
+
+**Work:**\newline
+ 
+
+Proportions: 
+```{r, cache=TRUE}
+# Proportion female who believed:
+509 / 625
+# Proportion male who believed:
+398 / 502
+```
+
+Get the standard error:
+$$SE = \sqrt {\dfrac {\hat \pi_1 (1 - \hat \pi_1)} {n_1} + \dfrac {\hat \pi_2 (1 - \hat \pi_2)} {n_2}},$$
+$$= \sqrt {\dfrac {0.8144 (1 - 0.8144)} {625} + \dfrac {0.79 (1 - 0.79)} {502}},$$
+```{r, chache = TRUE}
+sqrt( (((0.8144 * (1-0.8144)) /625)) + ((0.7928287 * (1 - 0.7928287))  /502 )) 
+```
+Next, get the confidence interval:
+$$(\hat \pi_1 - \hat \pi_2) \pm z_{0.1 /2} (SE), $$
+$$(0.8144 - 0.7928) \pm 1.645 (0.0239),$$
+
+$$= (-0.01764069, 0.06084069)$$ 
+```{r, cache=TRUE}
+# calculations
+#lower
+0.8144 - 0.7928 - 1.645 * 0.02385452
+#upper
+0.8144 - 0.7928 + 1.645 * 0.02385452
+```
+
