@@ -4,14 +4,15 @@ author: "Matthew Vanaman"
 date: "03/11/19"
 monofont: Courier New
 output:
-  word_document: default
   pdf_document:
+    fig_caption: yes
     latex_engine: xelatex
+  word_document: default
 header-includes: \usepackage{tikz,xcolor,listings}
 ---
 `r knitr::opts_knit$set(root.dir='..')`
 
-```{r, include=FALSE, cache=TRUE}
+```{r, include=FALSE}
 library(ProjectTemplate); load.project()
 ```
 
@@ -23,7 +24,7 @@ np <- reticulate::import("numpy")
 sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
 ```
 
-A2.13, A2.21, A2.36. (3 points each)
+A2.21, A2.36. (3 points each)
 
 A2.33 (5 points)
 
@@ -81,7 +82,7 @@ Plug and chug:\newline
 $$P(X = 1|Y = 1) = \dfrac {P(Y = 1|X = 1)P(X = 1)} {P(Y = 1|X = 1)P(X = 1) + P(Y = 1|X = 0) P(X = 0)},$$\newline
 $$ = \dfrac {0.86 \times 0.01} {(0.86 \times 0.01) + (0.12 \times 0.99)},$$\newline
 $$= 0.07.$$
-```{r, cache=TRUE}
+```{r}
 # calculations
 (0.86 * 0.01) / ((0.86 * 0.01) + (0.12 * 0.99))
 ```
@@ -89,7 +90,7 @@ $$= 0.07.$$
 ## (d)
 
 **Answer:**\newline
-```{r, cache=TRUE, echo=FALSE}
+```{r, echo=FALSE}
 test <- matrix(c("0.8712","0.0014","0.1188","0.0086",0.99,0.01), ncol=3)
 colnames(test) <- c('Negative', 'Positive', "Row Margin")
 rownames(test) <- c('No Disease', 'Disease')
@@ -108,7 +109,7 @@ We start with what we know:\newline
 - $P(Y = 1|X = 0) = 0.12$.\newline
 - $P(X = 0) = 0.99.$\newline
 - $P(X = 1) = 0.01$
-```{r, echo=FALSE, cache=TRUE}
+```{r, echo=FALSE}
 test <- matrix(c("$\\pi_{00}$","$\\pi_{10}$","$\\pi_{01}$","$\\pi_{11}$",0.99,0.01), ncol=3)
 colnames(test) <- c('Negative', 'Positive', "Row Margin")
 rownames(test) <- c('No Disease', 'Disease')
@@ -118,25 +119,25 @@ knitr::kable(test.table)
 
 
 Probability of both having disease and getting positive result:
-```{r, cache=TRUE}
+```{r}
 0.01 * 0.86
 ```
 
 From there, because we have the margin and one of the cells, we have the other cell in that row:
-```{r, cache=TRUE}
+```{r}
 0.01 - 0.0086
 ```
 
 Probability of negative diagnosis and not having disease: 
-```{r, cache=TRUE}
+```{r}
 0.99 * 0.88
 ```
 Get the last cell:
-```{r, cache=TRUE}
+```{r}
 0.99 - 0.8712
 ```
 
-```{r, cache=TRUE}
+```{r}
 # check work
 0.0086 + 0.0014
 0.1386 + 0.8514
@@ -169,7 +170,7 @@ $$\dfrac {1 - 0.45} {1} = 0.55$$
 
 **Work:**\newline
 We found the numerator for the risk ratio in part i. To get the RR for the placebo group, we flip the fraction from the last problem over:
-```{r, cache=TRUE}
+```{r}
 1 / (1 - 0.45)
 ```
 So the placebo group wa 82% more likely to get cancer.
@@ -186,7 +187,7 @@ So the placebo group wa 82% more likely to get cancer.
  
 
 Proportions: 
-```{r, cache=TRUE}
+```{r}
 # Proportion female who believed:
 509 / 625
 # Proportion male who believed:
@@ -204,7 +205,7 @@ $$(\hat \pi_1 - \hat \pi_2) \pm z_{0.1 /2} (SE), $$
 $$(0.8144 - 0.7928) \pm 1.645 (0.0239),$$
 
 $$= (-0.01764069, 0.06084069)$$ 
-```{r, cache=TRUE}
+```{r}
 # calculations
 #lower
 0.8144 - 0.7928 - 1.645 * 0.02385452
@@ -239,3 +240,63 @@ logodds - 1.645 * 0.1507
 # CI upper - log
 logodds + 1.645 * 0.1507
 ```
+
+## (c)
+
+**Answer:**\newline
+$\chi^2 = 0.825, df =1, p = 0.36$\newline
+
+
+**Work:**\newline
+
+
+Conduct a test of statistical independence. Report the P -value and interpret.
+
+X 2 = 0.8, df = 1, P-value = 0.36.
+
+```{r, cache = FALSE, echo=FALSE}
+# make a contigency table
+belief <- matrix(c("509","398",(509 + 398),"116","104",(116 + 104), (509 + 116),(398 + 104), (907 + 220)), ncol=3)
+colnames(belief) <- c('Belief', 'Disbelief', "Row Margin")
+rownames(belief) <- c('Female', 'Male', "Column Margin")
+belief.table <- as.table(belief)
+knitr::kable(belief.table, format = "markdown")
+```
+$n_{00}$
+```{r}
+(502 * 220) / 1127
+```
+$n_{01}$
+```{r}
+(502 * 907) / 1127
+```
+$n_{10}$
+```{r}
+(625 * 220) / 1127
+```
+$n_{11}$
+```{r}
+(625 * 907) / 1127
+```
+
+Following the chi-square formula:
+$$\chi^2  = \sum \dfrac {(n_{ij} - \hat \mu_{ij})^2} {\hat \mu_{ij}}$$
+```{r}
+cell_00 <- (104 - 97.99468)^2 / 97.99468
+cell_01 <- (398 - 404.0053)^2 / 404.0053
+cell_10 <- (116 - 122.0053)^2 / 122.0053
+cell_11 <- (509 - 502.9947)^2 / 502.9947
+cell_00 + cell_01 + cell_10 + cell_11
+```
+
+
+```{r}
+# check work, get p-value
+belief_test <- matrix(c(509,398,116,104), ncol=2)
+colnames(belief_test) <- c('Belief', 'Disbelief')
+rownames(belief_test) <- c('Female', 'Male')
+belief_test <- as.table(belief_test)
+knitr::kable(belief_test, format = "markdown")
+chisq.test(belief_test, correct = FALSE)
+```
+
