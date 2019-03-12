@@ -1,7 +1,7 @@
 ---
-title: "Temporary Name"
+title: "Math - In Class"
 author: "Matthew Vanaman"
-date: "Temporary Date"
+date: ""
 monofont: Courier New
 output:
   pdf_document: 
@@ -22,3 +22,7 @@ knitr::opts_chunk$set(engine.path = "/anaconda3/bin/python")
 np <- reticulate::import("numpy")
 sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
 ```
+
+
+# 03/12/19
+
