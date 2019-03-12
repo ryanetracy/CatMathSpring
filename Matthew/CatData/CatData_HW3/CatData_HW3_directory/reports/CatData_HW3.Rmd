@@ -24,9 +24,9 @@ np <- reticulate::import("numpy")
 sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
 ```
 
-A2.21, A2.36. (3 points each)
+ A2.33 (5 points), A2.36. (3 points each)
 
-A2.33 (5 points)
+
 
 *All code and work are shown in the appendix.*
 
@@ -318,5 +318,53 @@ gender <- matrix(c(60,40,(60+40),75,25, (75+25), (60+75), (40+25), 200), ncol=3)
 colnames(gender) <- c('Male', "Female", "Total") 
 rownames(gender) <- c('Yes', 'No', "Total") 
 knitr::kable(gender)
+```
+
+# 2.33
+
+## (a)
+
+Three-way contingency table:
+```{r}
+deaths <- matrix(c(151, 9, 63, 103, (151+9 +63+103), 19, 0, 11,6,(19+0+11+6)), ncol=2) 
+colnames(deaths) <- c('Death Penalty', "No Death Penalty") 
+rownames(deaths) <- c('White Killed White', 'White Killed Black',"Black Killed White", "Black Killed Black", "Total") 
+knitr::kable(deaths)
+```
+
+## (b)
+
+**Andwer:**\newline
+Victim white: 0.7107189 \newline
+Victim black: 0.8380567\newline
+Could not figure out why my answers did not match the book.
+
+**Work:**\newline
+
+Partial contingency tables. We need to group the rows by defendent race to hold the race of victim constant.
+
+```{r}
+# Victim white:
+defendent_white <- matrix(c(151.5, 63.5,9.5, 103.5,(151.5 + 9.5),(63.5 + 103.5), 19.5, 11.5,0.5,6.5, (19.5+0.5), (11.5+6.5)), ncol=2) 
+colnames(defendent_white) <- c('No Death Penalty', "Death Penalty") 
+rownames(defendent_white) <- c('White Killed White', 'Black Killed White',"White Killed Black", "Black Killed Black", "Total: Def. White", "Total: Def. Black") 
+knitr::kable(defendent_white)
+```
+Victim white:
+```{r}
+(19.5 * 63.5) / (151.5 * 11.5)
+```
+Victim black:
+```{r}
+(0.5*103.5) / (9.5*6.5)
+```
+
+
+## (c)
+c. 1.18; yes.
+
+Marginal odds:
+```{r}
+(167 * 20) / (161 * 18)
 ```
 
