@@ -314,14 +314,9 @@ No, there are redundances in each of the column. With $\chi^2$, you want to know
 Yes, if there were 100 subjects of each gender, then the numbers in the cells are out of 100. 
 
 ```{r}
-# check work, get p-value
-install.packages("data.table")
-library(data.table)
-gender <- matrix(c(60,40,75,25), ncol=1)
-colnames(gender) <- c('Gender')
-rownames(gender) <- c('mYes', 'mNo', 'Yes', 'No')
-gender <- cro(gender)
-
-gender
+gender <- matrix(c(60,40,(60+40),75,25, (75+25), (60+75), (40+25), 200), ncol=3) 
+colnames(gender) <- c('Male', "Female", "Total") 
+rownames(gender) <- c('Yes', 'No', "Total") 
+knitr::kable(gender)
 ```
 
