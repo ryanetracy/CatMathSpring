@@ -300,3 +300,28 @@ knitr::kable(belief_test, format = "markdown")
 chisq.test(belief_test, correct = FALSE)
 ```
 
+# 2.21
+
+## (a)
+
+**Answer:**\newline
+No, there are redundances in each of the column. With $\chi^2$, you want to know if two constructs are independent, or if they are not independent, then it is because of some association between the constructs themselves. With this table,  dependence might be due to associations between the constructs, but could also be due to subjects being double- or triple-counted across cells. You can't really tell unless the observations in the cells are dependent.
+
+
+## (b)
+
+**Answer:**\newline
+Yes, if there were 100 subjects of each gender, then the numbers in the cells are out of 100. 
+
+```{r}
+# check work, get p-value
+install.packages("data.table")
+library(data.table)
+gender <- matrix(c(60,40,75,25), ncol=1)
+colnames(gender) <- c('Gender')
+rownames(gender) <- c('mYes', 'mNo', 'Yes', 'No')
+gender <- cro(gender)
+
+gender
+```
+
