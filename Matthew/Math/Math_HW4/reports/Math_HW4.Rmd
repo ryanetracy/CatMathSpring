@@ -174,6 +174,7 @@ and left:
 
 ## (i)
 **Answer:**\newline
+$\approx 7.388611$
 
 
 **Work:**\newline
@@ -190,3 +191,15 @@ $$\approx 7.388611$$
 # calculations
 2.7182^2
 ```
+
+
+# 4.3
+
+## (a)
+
+**Answer:**\newline
+When Barack Obama says that the deficit is chainging at a certain pace, we can think of that pace at being the slope of the tangent line at a given point along the y-axis, the point representing a current  time. What is the value of the slope at the time at which Obama made this speech? We can really only approximate that with the tangent line (i.e. instantaneous rate of change). The tangent line is just the secant line between two points very very close together, and we could achieve greater and greater resolution by taking the derivative as many times as needed. Given the function f(t) represents the national debt for a given year (t), then in our case we could get the average rate of change for that year by taking the first derivative: f'(t). However, that's not enough resolution: to make a claim about the *current rate* at which the deficit is falling, you'd need the instantaneous rate of change. To get that, you'd take the second derivative, f''(t). This gives you the value of the tangent line for a given t (functionally speaking). We also know that this has to be a negative slope because the deficit is going down.
+
+## (b)
+
+**Answer:**\newline
