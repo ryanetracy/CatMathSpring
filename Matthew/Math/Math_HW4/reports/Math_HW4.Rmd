@@ -23,7 +23,7 @@ np <- reticulate::import("numpy")
 sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
 ```
 
-4.1, 4.2, 4.3, 4.4, 4.5, 4.6
+4.3, 4.4, 4.5, 4.6
 
 # 4.1
 
@@ -143,22 +143,50 @@ print(expr.doit())
 
 ## (g)
 **Answer:**\newline
-
+$\infty$
 
 **Work:**\newline
 Need limit from the right:
-```{r, results = 'hold}
-1 / 
+```{r, results = 'hold'}
+1 / (5.1 - 5)
+1 / (5.01 - 5)
+1 / (5.00001 - 5)
 ```
 
 ## (h)
 **Answer:**\newline
-
+The limit from the right is $\infty$ while the limit from the left is $-\infty$, therefore there is no limit. 
 
 **Work:**\newline
+Need limit from the right:
+```{r, results = 'hold'}
+1 / (7.1 - 7)
+1 / (7.01 - 7)
+1 / (7.00001 - 7)
+```
+and left:
+```{r, results = 'hold'}
+1 / (6.9 - 7)
+1 / (6.99 - 7)
+1 / (6.99999- 7)
+```
+
 
 ## (i)
 **Answer:**\newline
 
 
 **Work:**\newline
+Aha! This is just Euler's number, which is equal to 2.7182... Therefore:
+
+$$\lim_{z \to \infty} \bigg( 1 + \dfrac {1} {z} \bigg)^{2z},$$
+Becaause the exponenents are mutliplicative, put the z on the inside to get euler's number:
+$$= \lim_{z \to \infty} \Bigg( \bigg( 1 + \dfrac {1} {z} \bigg)^z \Bigg)^2,$$
+$$= \lim_{z \to \infty} (e)^2$$
+$$= \lim_{z \to \infty} (2.7182)^2$$
+$$\approx 7.388611$$
+
+```{r}
+# calculations
+2.7182^2
+```
