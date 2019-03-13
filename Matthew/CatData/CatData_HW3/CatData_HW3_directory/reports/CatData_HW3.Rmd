@@ -24,7 +24,6 @@ np <- reticulate::import("numpy")
 sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
 ```
 
- A2.33 (5 points), A2.36. (3 points each)
 
 
 
@@ -345,8 +344,8 @@ Partial contingency tables. We need to group the rows by defendent race to hold 
 
 ```{r}
 # Victim white:
-defendent_white <- matrix(c(151.5, 63.5,9.5, 103.5,(151.5 + 9.5),(63.5 + 103.5), 19.5, 11.5,0.5,6.5, (19.5+0.5), (11.5+6.5)), ncol=2) 
-colnames(defendent_white) <- c('No Death Penalty', "Death Penalty") 
+defendent_white <- matrix(c(19.5, 11.5,0.5,6.5, (19.5+0.5), (11.5+6.5), 151.5, 63.5,9.5, 103.5,(151.5 + 9.5),(63.5 + 103.5)), ncol=2) 
+colnames(defendent_white) <- c('Death Penalty', "No Death Penalty") 
 rownames(defendent_white) <- c('White Killed White', 'Black Killed White',"White Killed Black", "Black Killed Black", "Total: Def. White", "Total: Def. Black") 
 knitr::kable(defendent_white)
 ```
@@ -361,10 +360,22 @@ Victim black:
 
 
 ## (c)
-c. 1.18; yes.
 
-Marginal odds:
+**Answer:** \newline
+1.15. Yes, because the conditional odds ratio from the partial table indicated that whites are between 29% and 17% less likely to get the death penalty than blacks (depending on race of the victim), while according to the marginal odds ratio (which does not control for victim), whites are 15% *more* likely to recieve the death penalty than blacks. The effect of race of defendenant has switched directions, illustarting Simpson's paradox.
+
+**Work:** \newline
 ```{r}
+# calculations
 (167 * 20) / (161 * 18)
 ```
+
+
+# 2.36
+
+**Answer:**\newline
+
+
+
+**Work:**\newline
 
