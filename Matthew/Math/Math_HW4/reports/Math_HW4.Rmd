@@ -203,12 +203,20 @@ When Barack Obama says that the deficit is changing at a certain pace, we can th
 ## (b)
 
 **Answer:**\newline
+This trend isn't accurate, but is true in the sense that 2013 would indeed be the year with the fastest falling deficit:
 ```{r}
 sigmoid = function(x) {
    1 / (1 + exp(-x))
 }
 x <- seq(-5, 5, 0.01)
-plot(x, sigmoid(x), col='blue', xlab = "Year", ylab = "Debt", xaxt = "n", yaxt="n")
+p1 <- ggplot(data_frame())
 
+p1 + stat_function(aes(-4:3), fun = sigmoid) + ylab("Debt") + 
+  theme(
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank())+
+  scale_x_continuous(name = "Year", breaks = c(-4, -2, 0, 2), 
+                     labels = c("1953", '1973', '1993', '2013'), 
+                     limits = c(-4, 2))
 ```
 
