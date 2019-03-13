@@ -225,16 +225,6 @@ We start with what we know:\newline
 - $P(Y = 1|X = 0) = 0.12$.\newline
 - $P(X = 0) = 0.99.$\newline
 - $P(X = 1) = 0.01.$
-```{r, results = "hide"}
-test <- matrix(c("$\\pi_{00}$","$\\pi_{10}$","$\\pi_{01}$","$\\pi_{11}$",
-                 0.99,0.01),
-               ncol=3)
-colnames(test) <- c('Negative', 'Positive', "Row Margin")
-rownames(test) <- c('No Disease', 'Disease')
-test.table <- as.table(test)
-knitr::kable(test.table)
-```
-
 
 Probability of both having disease and getting positive result:
 ```{r}
