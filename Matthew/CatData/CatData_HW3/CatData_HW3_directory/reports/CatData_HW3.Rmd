@@ -374,8 +374,4 @@ Victim black:
 # 2.36
 
 **Answer:**\newline
-
-
-
-**Work:**\newline
-
+X = Teach a class (yes or no), Y =  drink a second up of coffee (yes or no), Z = teaching time (morning or afternoon). Overall, teachers probably find that  drinking a second cup of coffee only bears a relationship with teaching when teaching occurs in the morning (marginally associated). If controlling for the time of day that teaching happens, teaching and deciding to drink a second cup of coffee are probably unrelated (conditionally indepedent). 
