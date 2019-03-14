@@ -23,7 +23,7 @@ np <- reticulate::import("numpy")
 sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
 ```
 
-4.3, 4.4, 4.5, 4.6
+4.4, 4.5, 4.6
 
 # 4.1
 
@@ -219,4 +219,27 @@ p1 + stat_function(aes(-4:3), fun = sigmoid) + ylab("Debt") +
                      labels = c("1953", '1973', '1993', '2013'), 
                      limits = c(-4, 2))
 ```
+
+# 4.4
+Super rough approximation:
+```{r, warning = FALSE}
+x <- seq(-5, 5, 0.001)
+dat <- data.frame(x,y=(2*x)^2)
+f <- function(x) (x*2)^2
+ggplot(dat, aes(x,y)) + 
+    geom_line()  + 
+  theme(
+  axis.ticks = element_blank())+
+  scale_x_continuous(name = "x", breaks = c(
+    -1, 0, 1), 
+    labels = c(-4, 0, 4),
+    limits = c(-2, 2)) +
+    scale_y_continuous(name = "y", breaks = c(
+    -1, 0, 1, 2, 3, 4, 5), 
+    labels = c(-2, -1, 0,1, 2, 3, 4),
+    limits = c(-1, 5))
+```
+
+
+
 
