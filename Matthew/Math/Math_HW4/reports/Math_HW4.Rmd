@@ -23,7 +23,7 @@ np <- reticulate::import("numpy")
 sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
 ```
 
-4.4, 4.5, 4.6
+4.5, 4.6
 
 # 4.1
 
@@ -221,7 +221,7 @@ p1 + stat_function(aes(-4:3), fun = sigmoid) + ylab("Debt") +
 ```
 
 # 4.4
-Super rough approximation:
+A rough approximation:
 ```{r, warning = FALSE}
 x <- seq(-5, 5, 0.001)
 dat <- data.frame(x,y=(2*x)^2)
@@ -243,3 +243,73 @@ ggplot(dat, aes(x,y)) +
 
 
 
+# 4.5
+
+## 4.5(a)
+
+**Answer:**\newline
+$= 6x^{5} + 25x^{4} - 4x.$
+
+
+**Work:**\newline
+$$\textrm {if} \ f(x) = x^6 + 5x^5 - 2x^2 + 8, \textrm {then}$$
+$$f'(x) = \dfrac {d} {dx} \Big( x^6 + 5x^5 - 2x^2 + 8 \Big),$$
+Use the addition/subtraction shortcut:
+$$= \dfrac {d} {dx}(x^6) + \dfrac {d}{dx} (5x^5) - \dfrac {d} {dx} (2x^2) + \dfrac {d} {dx} (8),$$
+$$= 6x^{6-1} + 5 (5x^{5-1}) - 2 (2x^{2-1}) + 0,$$
+$$= 6x^{5} + 25x^{4} - 4x.$$
+
+## 4.5(b)
+
+**Answer:**\newline
+$ = 3e^{y}  - \dfrac {1} {2\sqrt{y}}.$
+
+**Work:**\newline
+
+$$\textrm{if} \ g(y) = 3e^y - \sqrt{y}, \ \textrm{then}$$
+$$g'(y) = \dfrac {d} {dy} \Big( 3e^y - \sqrt{y} \Big),$$
+$$ = 3 \dfrac {d} {dy} (e^y)  - \dfrac {d} {dy} (\sqrt{y}),$$
+$$ = 3\dfrac {d} {dy} (e^y)  - \dfrac {1} {2\sqrt{y}},$$
+Assuming the $e$ here is Euler's number and not a variable like $x$ or $y$ or another constant like $a$, then $\dfrac {d} {dy} (e^y)$ is just $e^y$:
+$$ = 3e^{y}  - \dfrac {1} {2\sqrt{y}}.$$
+
+## 4.5(c)
+
+**Answer:**\newline
+$\dfrac {1} {z} - \dfrac {1} {z^{2}}  + \ln{(3)}3^z.$
+
+**Work:**\newline
+
+$$\textrm{if} \ h(z) = ln(z) + \dfrac {1} {z} + 3^z, \ \textrm{then}$$
+$$h'(z) = \dfrac {d} {dz} \big( \textrm{ln}(z) \big) + \dfrac {d} {dz} \big( \dfrac {1} {z} \big) + \dfrac {d} {dz}(3^z),$$
+$$\dfrac {1} {z} + \dfrac {d} {dz} \big( \dfrac {1} {z} \big) + \dfrac {d} {dz}(3^z),$$
+$$\dfrac {1} {z} + \dfrac {-1} {z^{1+1}}  + \dfrac {d} {dz}(3^z),$$
+$$\dfrac {1} {z} - \dfrac {1} {z^{2}}  + \dfrac {d} {dz}(3^z),$$
+$$\dfrac {1} {z} - \dfrac {1} {z^{2}}  + \ln{(3)}3^z.$$
+
+
+## 4.5(d)
+
+
+**Answer:**\newline
+$\Big( (x + 3)^7 \Big) \Big(12x^3 - 4x \Big) + \Big(7(x+3)^6 \Big) \Big(3x^4 - 2x^2 - 8\Big).$
+
+**Work:**\newline
+$$j(x) = (x + 3)^7(3x^4 - 2x^2 - 8).$$
+$$j'(x) = \dfrac {d} {dx}(x + 3)^7 \dfrac {d} {dx}(3x^4 - 2x^2 - 8).$$
+Would take too long to FOIL. To get derivative of first half, break it into layers:
+$$A^7 = (x + 3)^7, \ A = x + 3,$$
+Take derivative of $A^7$ with power rule:
+$$h'(x) = \dfrac {d} {dx}(A^7) = 7(A^{7-1}) = 7A^6.$$
+Lastly, substitute for A:
+$$7A^6 = 7(x+3)^6.$$
+For second half:
+$$\dfrac {d} {dx}(3x^4 - 2x^2 - 8),$$
+$$= \dfrac {d} {dx}(3x^4) - \dfrac {d} {dx}(2x^2) - \dfrac {d} {dx}(8),$$
+$$= 3 \dfrac {d} {dx}(x^4) - 2 \dfrac {d} {dx}(x^2) - 0,$$
+$$= 3 (4x^{4-1}) - 2 (2x^{2-1}),$$
+ $$= 12x^{4-1} - 4x^{2-1},$$
+ $$= 12x^3 - 4x.$$
+Plugging the derivatives back into the function:
+$$j'(x) = \dfrac {d} {dx}(x + 3)^7 \dfrac {d} {dx}(3x^4 - 2x^2 - 8),$$
+$$= \Big( (x + 3)^7 \Big) \Big(12x^3 - 4x \Big) + \Big(7(x+3)^6 \Big) \Big(3x^4 - 2x^2 - 8\Big).$$
