@@ -23,7 +23,7 @@ np <- reticulate::import("numpy")
 sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
 ```
 
-
+*All work and code are shown in the appendix.*
 
 # 4.1
 
@@ -36,162 +36,38 @@ As n approaches infinity, the shape would approach a circle.
 **Answer:**\newline
 32
 
-**Work:**\newline
-
-$$\lim_{x \to 5} 2x^2 - 5x + 7,$$\newline
-$$2(5^2) - 5(5) + 7,$$\newline
-$$32.$$
-
-```{r}
-# chck work
-2*(5)^2 - (5*5) + 7
-```
-
 ## (b)
 **Answer:**\newline
 Limit is 0. Approaches but never quite gets there from the left nor right.
-
-**Work:**\newline
-$$\lim_{y \to \infty} \frac {1} {y^6}$$
-```{r, results='hold'}
-# check work
-1 / 2^6
-1 / 4^6
-1 / 20^6
-1 / -2^6
-1 / -4^6
-1 / -20^6
-```
 
 ## (c)
 **Answer:**\newline
 Positive infinity. The larger the absolute value of z, the larger the quotient. 
 
-**Work:**\newline
-$$\lim_{z \to 0} \frac {1} {z^6}$$
-```{r, results='hold'}
-# check work
-1 / 1^6
-1 / 0.5^6
-1 / 0.01^6
-1 / (-1)^6
-1 / (-0.5)^6
-1 / (-0.01)^6
-```
-
-
 ## (d)
 **Answer:**\newline
 The limit is 0.
 
-**Work:**\newline
-```{r, results='hold'}
-# check work
-2*2 / 6 * (2^2)
-2*5 / 6 * (5^2)
-2*10 / 6 * (10^2)
-2*1 / 6 * (1^2)
-2*0.1 / 6 * (0.1^2)
-2*0.0001 / 6 * (0.001^2)
-```
-Could also solve this way:\newline
-$$\lim_{x \to 0} \frac {2x + 3} {5x^2},$$\newline
-$$\lim_{x \to 0} \frac {2x} {5x^2}  +\frac {3} {5x^2},$$\newline
-$$\lim_{x \to 0} \frac {2} {5x}  +\frac {3} {5x^2},$$\newline
-$$\lim_{x \to 0} \frac {2} {5x}  + \lim_{x \to 0} \frac {3} {5x^2},$$\newline
-$$\frac {2} {5} \lim_{x \to 0} \frac {1} {x}  + \frac {3} {5} \lim_{x \to 0} \frac {1} {x^2},$$\newline
-$$\frac {2} {5} \lim_{x \to 0} \frac {1} {x}  + \frac {3} {5} \lim_{x \to 0} \frac {1} {x^2},$$\newline
-The limits to $\frac {1} {x}$ and $\frac {1} {x^2}$ are 0.
-
-
 ## (e)
 **Answer:**\newline
-$\frac {3} {5}$
 
-
-**Work:**\newline
-We know that the limit of $\frac {1} {x^y} = 0$, so we can reduce many of the terms of the expression to 0s by making them into the form of $\frac {1} {x^y} = 0$.
-
-$$ \lim_{y \to \infty} \frac {3y^7 + 4y^6 - 2y^5 - 8y^3 - 7y + 1} {2y^7 + y^3 - 8} \times \frac { \frac {1} {y^7} } {\frac {1} {y^7} },$$\newline
-$$ = \lim_{y \to \infty} \frac {3y^7 + \frac {4} {y} - \frac {2} {y^2} - \frac {8} {y^4} - \frac {7} {y^6} + \frac {1} {y^7}} {2 + \frac {1} {4y^4} - \frac {8} {y^7}},$$\newline
-$$ = \frac {3} {5}.$$\newline
-
+$\dfrac {3} {5}$
 
 ## (f)
 **Answer:**\newline
 The limit is 1.
 
-**Work:**\newline
-
-Do some factoring
-$$\lim_{z \to 3} \frac {z^2 - 5z + 6} {z - 3},$$\newline
-
-
-$$=\lim_{z \to 3} \frac {(z-2)(z-3)} {z - 3},$$\newline
-$$ = \lim_{z \to 3} z-2 = 1$$\newline
-
-```{python}
-# check work
-import sympy
-from sympy import *
-x, y, z = symbols('x y z')
-init_printing(use_unicode=True)
-expr = Limit((z - 2)*(z - 3) / (z - 3), z, 3)
-# find the limit
-print(expr.doit())
-```
-
 ## (g)
 **Answer:**\newline
 $\infty$
-
-**Work:**\newline
-Need limit from the right:
-```{r, results = 'hold'}
-1 / (5.1 - 5)
-1 / (5.01 - 5)
-1 / (5.00001 - 5)
-```
 
 ## (h)
 **Answer:**\newline
 The limit from the right is $\infty$ while the limit from the left is $-\infty$, therefore there is no limit. 
 
-**Work:**\newline
-Need limit from the right:
-```{r, results = 'hold'}
-1 / (7.1 - 7)
-1 / (7.01 - 7)
-1 / (7.00001 - 7)
-```
-and left:
-```{r, results = 'hold'}
-1 / (6.9 - 7)
-1 / (6.99 - 7)
-1 / (6.99999- 7)
-```
-
-
 ## (i)
 **Answer:**\newline
 $\approx 7.388611$
-
-
-**Work:**\newline
-Aha! This is just Euler's number, which is equal to 2.7182... Therefore:
-
-$$\lim_{z \to \infty} \bigg( 1 + \dfrac {1} {z} \bigg)^{2z},$$
-Becaause the exponenents are mutliplicative, put the z on the inside to get euler's number:
-$$= \lim_{z \to \infty} \Bigg( \bigg( 1 + \dfrac {1} {z} \bigg)^z \Bigg)^2,$$
-$$= \lim_{z \to \infty} (e)^2$$
-$$= \lim_{z \to \infty} (2.7182)^2$$
-$$\approx 7.388611$$
-
-```{r}
-# calculations
-2.7182^2
-```
-
 
 # 4.3
 
@@ -203,8 +79,9 @@ When Barack Obama says that the deficit is changing at a certain pace, we can th
 ## (b)
 
 **Answer:**\newline
-This trend isn't accurate, but is true in the sense that 2013 would indeed be the year with the fastest falling deficit:
-```{r}
+This trend isn't accurate, but is true in the sense that 2013 would indeed be the year with the fastest falling deficit:\newline
+
+```{r, echo=FALSE, fig.height=3, fig.width=4}
 sigmoid = function(x) {
    1 / (1 + exp(-x))
 }
@@ -221,8 +98,9 @@ p1 + stat_function(aes(-4:3), fun = sigmoid) + ylab("Debt") +
 ```
 
 # 4.4
-A rough approximation:
-```{r, warning = FALSE}
+A rough approximation:\newline
+
+```{r, warning = FALSE, echo=FALSE, fig.height=3, fig.width=4}
 x <- seq(-5, 5, 0.001)
 dat <- data.frame(x,y=(2*x)^2)
 f <- function(x) (x*2)^2
@@ -245,11 +123,249 @@ ggplot(dat, aes(x,y)) +
 
 # 4.5
 
-## 4.5(a)
+## (a)
 
 **Answer:**\newline
 $= 6x^{5} + 25x^{4} - 4x.$
 
+## (c)
+
+**Answer:**\newline
+$\dfrac {1} {z} - \dfrac {1} {z^{2}}  + \ln{(3)}3^z.$
+
+## (d)
+
+**Answer:**\newline
+$\Big( (x + 3)^7 \Big) \Big(12x^3 - 4x \Big) + \Big(7(x+3)^6 \Big) \Big(3x^4 - 2x^2 - 8\Big).$
+
+
+## (f)
+
+**Answer:**\newline
+$\dfrac {1 - \ln(z)} {z^2}.$
+
+
+## (g)
+
+**Answer:**\newline
+$\dfrac {-1} {(1 + e^{-x})^2} \times e^{-x} \times -1 \times \dfrac {e^{-x}} {(1 + e^{-x})^2}.$
+
+# 4.6
+
+## (a)
+**Answer:**\newline
+$f^{(n)}(x) = (-1)^n \dfrac {(n-2)!} {x^{n-1}}.$
+
+Each derivativei ends in a fraction. The denominator is x to the power of the number of the derivative minus 1 ($(n^{th} \ \textrm {derivative})^{n-1}$). The numerator is the factorial of the $n^{th}$ derivative minus 2, with positive values for the even derivatives and negative values for the odd derivatives (accomplished by multiplying by $(-1)^n$.
+
+
+## (b)
+
+**Answer:**\newline
+$g^{(n)} (x) = (x + n)e^x.$\newline
+
+Every derivative ends in x + (number of the derivative) times e to the power of x. 
+
+
+\newpage
+
+\begin{center}
+\LARGE\bfseries Appendix
+\end{center}
+
+# 4.1
+N/A 
+
+# 4.2
+
+## (a)
+
+**Work:**
+$$\lim_{x \to 5} 2x^2 - 5x + 7,$$
+$$=2(5^2) - 5(5) + 7,$$
+$$=32.$$
+
+```{r}
+# chck work
+2*(5)^2 - (5*5) + 7
+```
+
+## (b)
+
+**Work:**\newline
+$\lim_{y \to \infty} \dfrac {1} {y^6}$
+```{r, results='hold'}
+# check work
+1 / 2^6
+1 / 4^6
+1 / 20^6
+1 / -2^6
+1 / -4^6
+1 / -20^6
+```
+
+## (c)
+
+**Work:**\newline
+$\lim_{z \to 0} \dfrac {1} {z^6}$
+```{r, results='hold'}
+# check work
+1 / 1^6
+1 / 0.5^6
+1 / 0.01^6
+1 / (-1)^6
+1 / (-0.5)^6
+1 / (-0.01)^6
+```
+
+
+## (d)
+
+**Work:**
+```{r, results='hold'}
+# check work
+2*2 / 6 * (2^2)
+2*5 / 6 * (5^2)
+2*10 / 6 * (10^2)
+2*1 / 6 * (1^2)
+2*0.1 / 6 * (0.1^2)
+2*0.0001 / 6 * (0.001^2)
+```
+Could also solve this way:\newline
+$$\lim_{x \to 0} \frac {2x + 3} {5x^2},$$\newline
+$$\lim_{x \to 0} \frac {2x} {5x^2}  +\frac {3} {5x^2},$$\newline
+$$\lim_{x \to 0} \frac {2} {5x}  +\frac {3} {5x^2},$$\newline
+$$\lim_{x \to 0} \frac {2} {5x}  + \lim_{x \to 0} \frac {3} {5x^2},$$\newline
+$$\frac {2} {5} \lim_{x \to 0} \frac {1} {x}  + \frac {3} {5} \lim_{x \to 0} \frac {1} {x^2},$$\newline
+$$\frac {2} {5} \lim_{x \to 0} \frac {1} {x}  + \frac {3} {5} \lim_{x \to 0} \frac {1} {x^2},$$\newline
+The limits to $\dfrac {1} {x}$ and $\dfrac {1} {x^2}$ are 0.
+
+
+## (e)
+
+
+**Work:**\newline
+We know that the limit of $\frac {1} {x^y} = 0$, so we can reduce many of the terms of the expression to 0s by making them into the form of $\frac {1} {x^y} = 0$.
+
+$$ \lim_{y \to \infty} \frac {3y^7 + 4y^6 - 2y^5 - 8y^3 - 7y + 1} {2y^7 + y^3 - 8} \times \dfrac { \frac {1} {y^7} } {\frac {1} {y^7} },$$\newline
+$$ = \lim_{y \to \infty} \frac {3y^7 + \frac {4} {y} - \frac {2} {y^2} - \frac {8} {y^4} - \frac {7} {y^6} + \frac {1} {y^7}} {2 + \frac {1} {4y^4} - \frac {8} {y^7}},$$\newline
+$$ = \frac {3} {5}.$$\newline
+
+
+## (f)
+
+**Work:**\newline
+Do some factoring
+$$\lim_{z \to 3} \frac {z^2 - 5z + 6} {z - 3},$$\newline
+$$=\lim_{z \to 3} \frac {(z-2)(z-3)} {z - 3},$$\newline
+$$ = \lim_{z \to 3} z-2 = 1$$\newline
+
+```{python}
+# check work
+import sympy
+from sympy import *
+x, y, z = symbols('x y z')
+init_printing(use_unicode=True)
+expr = Limit((z - 2)*(z - 3) / (z - 3), z, 3)
+# find the limit
+print(expr.doit())
+```
+
+## (g)
+
+**Work:**\newline
+Need limit from the right:
+```{r, results = 'hold'}
+1 / (5.1 - 5)
+1 / (5.01 - 5)
+1 / (5.00001 - 5)
+```
+
+## (h)
+
+**Work:**\newline
+Need limit from the right:
+```{r, results = 'hold'}
+1 / (7.1 - 7)
+1 / (7.01 - 7)
+1 / (7.00001 - 7)
+```
+and left:
+```{r, results = 'hold'}
+1 / (6.9 - 7)
+1 / (6.99 - 7)
+1 / (6.99999- 7)
+```
+
+
+## (i)
+
+**Work:**\newline
+Aha! This is just Euler's number, which is equal to 2.7182... Therefore:
+
+$$\lim_{z \to \infty} \bigg( 1 + \dfrac {1} {z} \bigg)^{2z},$$
+Becaause the exponenents are mutliplicative, put the z on the inside to get euler's number:
+$$= \lim_{z \to \infty} \Bigg( \bigg( 1 + \dfrac {1} {z} \bigg)^z \Bigg)^2,$$
+$$= \lim_{z \to \infty} (e)^2$$
+$$= \lim_{z \to \infty} (2.7182)^2$$
+$$\approx 7.388611$$
+
+```{r}
+# calculations
+2.7182^2
+```
+
+
+# 4.3
+
+## (a)
+
+N/A
+
+## (b)
+
+```{r, fig.show="hide"}
+sigmoid = function(x) {
+   1 / (1 + exp(-x))
+}
+x <- seq(-5, 5, 0.01)
+p1 <- ggplot(data_frame())
+
+p1 + stat_function(aes(-4:3), fun = sigmoid) + ylab("Debt") + 
+  theme(
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank())+
+  scale_x_continuous(name = "Year", breaks = c(-4, -2, 0, 2), 
+                     labels = c("1953", '1973', '1993', '2013'), 
+                     limits = c(-4, 2))
+```
+
+# 4.4
+A rough approximation:
+```{r, warning = FALSE, fig.show="hide"}
+x <- seq(-5, 5, 0.001)
+dat <- data.frame(x,y=(2*x)^2)
+f <- function(x) (x*2)^2
+ggplot(dat, aes(x,y)) + 
+    geom_line()  + 
+  theme(
+  axis.ticks = element_blank())+
+  scale_x_continuous(name = "x", breaks = c(
+    -1, 0, 1), 
+    labels = c(-4, 0, 4),
+    limits = c(-2, 2)) +
+    scale_y_continuous(name = "y", breaks = c(
+    -1, 0, 1, 2, 3, 4, 5), 
+    labels = c(-2, -1, 0,1, 2, 3, 4),
+    limits = c(-1, 5))
+```
+
+
+
+
+# 4.5
+
+## (a)
 
 **Work:**\newline
 $$\textrm {if} \ f(x) = x^6 + 5x^5 - 2x^2 + 8, \textrm {then}$$
@@ -259,10 +375,7 @@ $$= \dfrac {d} {dx}(x^6) + \dfrac {d}{dx} (5x^5) - \dfrac {d} {dx} (2x^2) + \dfr
 $$= 6x^{6-1} + 5 (5x^{5-1}) - 2 (2x^{2-1}) + 0,$$
 $$= 6x^{5} + 25x^{4} - 4x.$$
 
-## 4.5(c)
-
-**Answer:**\newline
-$\dfrac {1} {z} - \dfrac {1} {z^{2}}  + \ln{(3)}3^z.$
+## (c)
 
 **Work:**\newline
 
@@ -274,10 +387,7 @@ $$\dfrac {1} {z} - \dfrac {1} {z^{2}}  + \dfrac {d} {dz}(3^z),$$
 $$\dfrac {1} {z} - \dfrac {1} {z^{2}}  + \ln{(3)}3^z.$$
 
 
-## 4.5(d)
-
-**Answer:**\newline
-$\Big( (x + 3)^7 \Big) \Big(12x^3 - 4x \Big) + \Big(7(x+3)^6 \Big) \Big(3x^4 - 2x^2 - 8\Big).$
+## (d)
 
 **Work:**\newline
 $$j(x) = (x + 3)^7(3x^4 - 2x^2 - 8).$$
@@ -300,10 +410,7 @@ $$j'(x) = \dfrac {d} {dx}(x + 3)^7 \dfrac {d} {dx}(3x^4 - 2x^2 - 8),$$
 $$= \Big( (x + 3)^7 \Big) \Big(12x^3 - 4x \Big) + \Big(7(x+3)^6 \Big) \Big(3x^4 - 2x^2 - 8\Big).$$
 
 
-## 4.5(f)
-
-**Answer:**\newline
-$\dfrac {1 - \ln(z)} {z^2}.$
+## (f)
 
 **Work:**\newline
 
@@ -318,10 +425,8 @@ $$= \dfrac {(z \times 1/z) - (\ln(z) \times 1)} {z^2},$$
 Clean it up a bit:
 $$= \dfrac {1 - \ln(z)} {z^2}.$$
 
-## 4.5(g)
+## (g)
 
-**Answer:**\newline
-$$\dfrac {-1} {(1 + e^{-x})^2} \times e^{-x} \times -1 \times \dfrac {e^{-x}} {(1 + e^{-x})^2}.$$
 **Work:**\newline
 $$m(x) = \dfrac {1} {1 + e^{-x}}.$$
 Identify any layers:
@@ -345,26 +450,22 @@ $$m'(x) = \dfrac {-1} {(1 + e^{-x})^2} \times e^{-x} \times -1 \times \dfrac {e^
 
 # 4.6
 
-## 4.6(a)
-**Answer:**\newline
-$f^{(n)}(x) = (-1)^n \dfrac {(n-2)!} {x^{n-1}}. $
-
-Each derivativei ends in a fraction. The denominator is x to the power of the number of the derivative minus 1 ($(n^{th} \ \textrm {derivative})^{n-1}$). The numerator is the factorial of the $n^{th}$ derivative minus 2, with positive values for the even derivatives and negative values for the odd derivatives (accomplished by multiplying by $(-1)^n$.
-
+## (a)
 
 **Work:**\newline
 
 #### First derivative:
-$$f'(x) = x \dfrac {d} {dx} \Big(\ln(x)  \Big) + \ln(x) \dfrac {d} {dx} (x), $$
-$$= x \dfrac {1} {x} + \ln(x), $$
-$$ = 1 + \ln(x). $$
+$$f'(x) = x \dfrac {d} {dx} \Big(\ln(x)  \Big) + \ln(x) \dfrac {d} {dx} (x),$$
+$$= x \dfrac {1} {x} + \ln(x),$$
+$$ = 1 + \ln(x).$$
+
 #### Second Derivative:
 
-$$ f''(x) = \dfrac {d} {dx} \Big( 1 + \ln(x) \Big) = \dfrac {1} {x}. $$
+$$f''(x) = \dfrac {d} {dx} \Big( 1 + \ln(x) \Big) = \dfrac {1} {x}.$$
 
 #### Third Dervivative:
 
-$$ f'''(x) = \dfrac {d} {dx} \Big( \dfrac {1} {x} \Big) = \dfrac {-1} {x^2}. $$
+$$ f'''(x) = \dfrac {d} {dx} \Big( \dfrac {1} {x} \Big) = \dfrac {-1} {x^2}.$$
 
 #### Fourth Derivative:
 
@@ -378,22 +479,17 @@ $$ f'''''(x) = \dfrac {d} {dx} (2x^{-3} = -6x^{-4} = \dfrac {-6} {x^4} ).  $$
 
 $$f^{(n)} (x) = (-1)^n \dfrac {(n-2)!} {x^{n-1}}.  $$
 
-## 4.6(b)
-
-**Answer:**\newline
-$g^{(n)} (x) = (x + n)e^x. $\newline
-
-Every derivative ends in x + (number of the derivative) times e to the power of x. 
+## (b)
 
 **Work:**\newline
 
 #### First derivative:
-$$g'(x) = x \dfrac {d} {dx} (e^x) + e^x \dfrac {d} {dx} (x) = xe^x +e^x = (x+1) e^x.  $$
+$$g'(x) = x \dfrac {d} {dx} (e^x) + e^x \dfrac {d} {dx} (x) = xe^x +e^x = (x+1) e^x. $$
 
 
 #### Second Derivative:
 
-$$ g''(x) = (x +1) \dfrac {d} {dx} (e^x) + e^x \dfrac {d} {dx} (x + 1) = (x + 1)e^x + e^x = (x + 2)e^x  $$
+$$ g''(x) = (x +1) \dfrac {d} {dx} (e^x) + e^x \dfrac {d} {dx} (x + 1) = (x + 1)e^x + e^x = (x + 2)e^x $$
 
 #### Third Dervivative:
 
