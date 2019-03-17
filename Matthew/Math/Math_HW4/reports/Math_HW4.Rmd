@@ -290,7 +290,6 @@ $$\dfrac {1} {z} - \dfrac {1} {z^{2}}  + \ln{(3)}3^z.$$
 
 ## 4.5(d)
 
-
 **Answer:**\newline
 $\Big( (x + 3)^7 \Big) \Big(12x^3 - 4x \Big) + \Big(7(x+3)^6 \Big) \Big(3x^4 - 2x^2 - 8\Big).$
 
@@ -313,3 +312,20 @@ $$= 3 (4x^{4-1}) - 2 (2x^{2-1}),$$
 Plugging the derivatives back into the function:
 $$j'(x) = \dfrac {d} {dx}(x + 3)^7 \dfrac {d} {dx}(3x^4 - 2x^2 - 8),$$
 $$= \Big( (x + 3)^7 \Big) \Big(12x^3 - 4x \Big) + \Big(7(x+3)^6 \Big) \Big(3x^4 - 2x^2 - 8\Big).$$
+
+## 4.5(e)
+
+**Answer:**\newline
+$\dfrac {e^{\sqrt y}} {2 \sqrt y}.$
+
+**Work:**\newline
+$$k(y) = e^{\sqrt{y}}.$$
+Identify the layers:\newline
+$$k(y) = e^A, \ A = \sqrt y$$
+Get the derivative of each:\newline
+$$\dfrac {d} {dy}(\sqrt{y}) = \dfrac {1} {2 \sqrt y }.$$
+$$\dfrac {d} {dA} (e^A) = e^A$$
+Sub back in:
+$$e^A \dfrac {1} {2 \sqrt y},$$
+$$= \dfrac {e^{\sqrt y}} {1} \times \dfrac {1} {2 \sqrt y},$$
+$$\dfrac {e^{\sqrt y}} {2 \sqrt y} = k'(y).$$
