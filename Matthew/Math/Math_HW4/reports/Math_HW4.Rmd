@@ -346,5 +346,59 @@ $$m'(x) = \dfrac {-1} {(1 + e^{-x})^2} \times e^{-x} \times -1 \times \dfrac {e^
 # 4.6
 
 ## 4.6(a)
+**Answer:**\newline
+$f^{(n)}(x) = (-1)^n \dfrac {(n-2)!} {x^{n-1}}. $
+
+Each derivativei ends in a fraction. The denominator is x to the power of the number of the derivative minus 1 ($(n^{th} \ \textrm {derivative})^{n-1}$). The numerator is the factorial of the $n^{th}$ derivative minus 2, with positive values for the even derivatives and negative values for the odd derivatives (accomplished by multiplying by $(-1)^n$.
+
+
+**Work:**\newline
+
+#### First derivative:
+$$f'(x) = x \dfrac {d} {dx} \Big(\ln(x)  \Big) + \ln(x) \dfrac {d} {dx} (x), $$
+$$= x \dfrac {1} {x} + \ln(x), $$
+$$ = 1 + \ln(x). $$
+#### Second Derivative:
+
+$$ f''(x) = \dfrac {d} {dx} \Big( 1 + \ln(x) \Big) = \dfrac {1} {x}. $$
+
+#### Third Dervivative:
+
+$$ f'''(x) = \dfrac {d} {dx} \Big( \dfrac {1} {x} \Big) = \dfrac {-1} {x^2}. $$
+
+#### Fourth Derivative:
+
+$$ f''''(x) = \dfrac {d} {dx} \Big( \dfrac {-1} {x^2} \Big) = \dfrac {d} {dx} (-x^{-2}) = 2x^{-3} = \dfrac {2} {x^3}.   $$
+
+#### Fifth Derivative:
+
+$$ f'''''(x) = \dfrac {d} {dx} (2x^{-3} = -6x^{-4} = \dfrac {-6} {x^4} ).  $$
+
+#### Formula:
+
+$$f^{(n)} (x) = (-1)^n \dfrac {(n-2)!} {x^{n-1}}.  $$
 
 ## 4.6(b)
+
+**Answer:**\newline
+$g^{(n)} (x) = (x + n)e^x. $\newline
+
+Every derivative ends in x + (number of the derivative) times e to the power of x. 
+
+**Work:**\newline
+
+#### First derivative:
+$$g'(x) = x \dfrac {d} {dx} (e^x) + e^x \dfrac {d} {dx} (x) = xe^x +e^x = (x+1) e^x.  $$
+
+
+#### Second Derivative:
+
+$$ g''(x) = (x +1) \dfrac {d} {dx} (e^x) + e^x \dfrac {d} {dx} (x + 1) = (x + 1)e^x + e^x = (x + 2)e^x  $$
+
+#### Third Dervivative:
+
+$$ g'''(x) = (x+2)\dfrac {d} {dx} (e^x) + e^x \dfrac {d} {dx} (x + 2) = (x + 2)e^x + e^x = (x + 3)e^x. $$
+
+#### Formula:
+
+$$g^{(n)} (x) = (x + n)e^x. $$
