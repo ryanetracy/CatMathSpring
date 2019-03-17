@@ -329,3 +329,47 @@ Sub back in:
 $$e^A \dfrac {1} {2 \sqrt y},$$
 $$= \dfrac {e^{\sqrt y}} {1} \times \dfrac {1} {2 \sqrt y},$$
 $$\dfrac {e^{\sqrt y}} {2 \sqrt y} = k'(y).$$
+
+## 4.5(f)
+
+**Answer:**\newline
+$\dfrac {1 - \ln(z)} {z^2}.$
+
+**Work:**\newline
+
+$$l(z) = \dfrac {\ln(z)} {z},$$
+$$l'(z) = \dfrac {\dfrac {d} {dz} \Big(\ln(z) \Big)}  {\dfrac {d} {dz}(z)},$$
+$$= \dfrac {\dfrac {d} {dz} \Big(\ln(z) \Big)}  {\dfrac {d} {dz}(z)}$$
+$$= \dfrac {1/z}  {1}$$
+But remember quotient rule:
+$$\dfrac {g(z)f'(z) - f(z)g'(z)} {g(z)^2}$$
+Subbing back in:
+$$= \dfrac {(z \times 1/z) - (\ln(z) \times 1)} {z^2},$$
+Clean it up a bit:
+$$= \dfrac {1 - \ln(z)} {z^2}.$$
+
+## 4.5(g)
+
+**Answer:**\newline
+$$\dfrac {-1} {(1 + e^{-x})^2} \times e^{-x} \times -1 \times \dfrac {e^{-x}} {(1 + e^{-x})^2}.$$
+**Work:**\newline
+$$m(x) = \dfrac {1} {1 + e^{-x}}.$$
+Identify any layers:
+$$m(x) = \dfrac {1} {A}, \ A = 1 + e^B, \ B = -x.$$
+take the derivative of each layer:
+#### First layer:
+$$m'(x) = \dfrac {d} {dA} \Big(\dfrac {1} {A} \Big) = \dfrac {-1} {A^2}.$$
+Substitute:
+$$m'(x) = \dfrac {-1} {A^2} = (a + e^B)^2 = \dfrac {-1} {(1 + e^{-x})^2}.$$
+
+#### Second layer:
+$$\dfrac {d} {dB} \Big(1 + e^B\Big) = e^B = e^{-x}.$$
+
+#### Third layer:
+
+$$\dfrac {d} {dx} (-x) = -1.$$
+
+#### Combine:
+
+$$m'(x) = \dfrac {-1} {(1 + e^{-x})^2} \times e^{-x} \times -1 \times \dfrac {e^{-x}} {(1 + e^{-x})^2}.$$
+
