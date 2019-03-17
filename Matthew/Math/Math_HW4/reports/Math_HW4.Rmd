@@ -373,3 +373,42 @@ $$\dfrac {d} {dx} (-x) = -1.$$
 
 $$m'(x) = \dfrac {-1} {(1 + e^{-x})^2} \times e^{-x} \times -1 \times \dfrac {e^{-x}} {(1 + e^{-x})^2}.$$
 
+## 4.5(h)
+
+**Answer:**\newline
+$(\sqrt y + 1) \dfrac {e \sqrt y} {2 \sqrt y}$
+
+**Work:**\newline
+
+$$\textrm{if} \ n(y) = \sqrt y e^{\sqrt y}, \ \textrm{then}$$
+$$n'(y) = f'(y)g(y) + g'(y)f(y),$$
+$$\textrm {where} \ f(y) = \sqrt y \ \  \textrm {and} \ \  g(y) = e^{\sqrt y}.$$
+
+#### Derivative of f(y):
+$$f'(y) = \dfrac {d} {dy} (\sqrt y)= \dfrac {1} {2 \sqrt y}.$$
+#### Derivative of g(y):
+Identify the layers:
+$$g(y) = e^A, \ A = \sqrt P,$$
+
+##### First layer:
+$$\dfrac {d} {dA} (e^A) = e^A = e^\sqrt y.$$
+
+##### Second layer:
+$$\dfrac {d} {dy} (\sqrt y ) = \dfrac {1} {2 \sqrt y}.$$
+
+#### Multiply:
+$$g'(y) = e^{\sqrt y } \times \dfrac {1} {2 \sqrt y},$$
+$$ = \dfrac {e^{\sqrt y }} {1}  \times \dfrac {1} {2 \sqrt y}$$
+$$ = \dfrac {e^{\sqrt y }} {2 \sqrt y}.$$
+
+#### Substitute:
+
+$$n'(y) = \Big( \dfrac {1} {2 \sqrt y}\Big) \Big( e^{\sqrt y} \Big) + \Big(\dfrac {e^{\sqrt y}} {2 \sqrt y}  \Big) \Big(\sqrt y  \Big),$$
+$$ = (\sqrt y + 1) \dfrac {e \sqrt y} {2 \sqrt y} .$$
+
+## 4.5 (i)
+
+**Answer:**\newline
+
+
+**Work:**\newline
