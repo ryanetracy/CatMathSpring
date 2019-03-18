@@ -22,3 +22,48 @@ knitr::opts_chunk$set(engine.path = "/anaconda3/bin/python")
 np <- reticulate::import("numpy")
 sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
 ```
+
+
+3.9, 3.15 (do not verify for 3.15d)
+
+# 3.9
+## (a)
+**Answer:** $\text{logit} [\hat P(Y = 1)]= 0.0532x -3.5561$. In this example, x is income, Y is possession of travel card  (0 = does not possess, 1 = does possess).
+
+## (b)
+**Answer:** $\hat \beta$ means, in this case, that as income increases, the probability of possessing a travel card increases (because $\hat \beta$ is positive).
+
+## (c)
+**Answer:** First, we know that $\hat \pi$ denotes $P(Y=1)$, and that the logit function is $\text {log} \Bigg[ \dfrac {P(Y=1)} {1-P(Y=1)} \Bigg]$. When you substitute 0.50 in for $P(Y=1)$, you get 0:
+```{r}
+log(0.50 / (1 - 0.50))
+```
+
+To show when the etsimated $\pi$ is 0.5, we just need to solve for x:
+```{python, echo=FALSE}
+# Check Work
+import sympy
+from sympy import *
+from sympy import Symbol
+x = Symbol('x')
+# Solve
+print("solveset(Eq(-3.556 + 0.0532*x)), 0.50")
+print(solveset(Eq(-3.556 + 0.0532*x)), 0.50)
+```
+Therefore, when x = 66.84, $\hat \pi = 0.50$. According to the model, there is a 50/50 shot of owning a travel card for those who make around 66.86 million lira.
+
+
+
+
+
+# Question 3, AD Data
+
+```{r}
+q3Data <- as.data.frame(matrix(c(730,130,860,
+                    100, 40, 140,
+                    830,170,1000), ncol = 3))
+colnames(q3Data) <- c("NLD", 'LD', 'Margin')
+rownames(q3Data) <- c('NAD', 'AD','Margin')
+knitr::kable(q3Data)
+```
+
