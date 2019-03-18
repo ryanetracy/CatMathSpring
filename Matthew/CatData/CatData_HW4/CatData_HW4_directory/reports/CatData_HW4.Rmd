@@ -24,7 +24,7 @@ sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/
 ```
 
 
-3.9, 3.15 (do not verify for 3.15d)
+3.15 (do not verify for 3.15d)
 
 # 3.9
 ## (a)
@@ -52,9 +52,30 @@ print(solveset(Eq(-3.556 + 0.0532*x)), 0.50)
 ```
 Therefore, when x = 66.84, $\hat \pi = 0.50$. According to the model, there is a 50/50 shot of owning a travel card for those who make around 66.86 million lira.
 
+# 3.15
+## (a)
+**Answer:** The intercept in this case is whites (white = 0). To calculate the estimate population mean, just exponentiate the y-intercept by itself (or more accurately, the effect of white when black = 0):
+```{r}
+exp(-2.38 + (1.733 * 0))
+```
+To get the estimated population means for black, add black to the model:
+```{r}
+exp(-2.38 + (1.733 * 1))
+```
 
+## (b)
+The wald confidence interval for poisson data is $\hat \beta \pm z_{\alpha/2} (SE)$. $\hat \beta$ is the log of the ratio between the two means. Therefore:
+```{r}
+# CI Lower:
+log(0.522/0.092) - 1.96 * 0.147
+# CI Upper:
+log(0.522/0.092) + 1.96 * 0.147
+```
+## (c)
+The negative binomial is model is more believable because overdispersion is likely biasing our Poisson coefficients. We know we have overdispersion because in Poisson models, the mean should equal the variance, but in our case the variances for both blacks (1.150) and whites (0.155) are much, much greater taen their group means (0.522 and 0.092, respectively). 
 
-
+## (d)
+$\hat D$, the dispersion index of the negative binomial model, is 4.94, which indicates a huge discrepancy between the observed dispersion and the dispersion assumed by the Poisson model (i.e. $D$ = 0). If $\hat D$ had turned out to be close to zero, then Poisson would be appropriate.
 
 # Question 3, AD Data
 
