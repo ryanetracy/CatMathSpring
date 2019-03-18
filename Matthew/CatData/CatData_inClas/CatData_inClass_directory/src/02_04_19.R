@@ -8,11 +8,12 @@ for (dataset in project.info$data)
   print(head(get(dataset)))
 }
 
-### 03/11/10
+### 03/18/19
 
-
-
-
+fit_sal <- glm(observed ~ doseofquinoline + logd, data = salmonella, family = poisson(link = "log"))
+fit_sal_sum <- summary(fit_sal)
+fit_sal$
+fit_sal_sum
 
 
 
