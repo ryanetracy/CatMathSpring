@@ -67,8 +67,11 @@ italianData <- as.data.frame(matrix(c(24, 27, 28, 29, 30, 31, 32, 33,
                                       1, 1, 1, 0, 0, 0, 0, 1,
                                       0, 0, 2, 0, 0, 2, 6, 3,
                                       3, 0, 0, 0, 0, 6, 1), ncol = 3))
-colnames(italianData) <- c("Inc", 'No. Cases', 'Credit Cards')
+colnames(italianData) <- c("Inc", 'NumCases', 'CreditCards')
 knitr::kable(italianData)
+q9_fit <- glm(cbind(CreditCards,NumCases - CreditCards) ~ Inc, italianData, family=binomial(link="logit"))
+"glm((CreditCards,NumCases - CreditCards) ~ Inc,  family=binomial(link='logit'))"
+summary(q9_fit)$coefficients
 ```
 
 
