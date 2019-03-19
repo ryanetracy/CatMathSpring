@@ -102,6 +102,12 @@ $\hat D$, the dispersion index of the negative binomial model, is 4.94, which in
 
 # Question 3, AD Data
 
+**Answer:** \newline
+AR: 0.11, CI (0.04, 0.18)\newline
+
+**Work:**
+
+## Attributable Risk and Confidence Intervals
 ```{r}
 q3Data <- as.data.frame(matrix(c(730,130,860,
                     100, 40, 140,
@@ -111,3 +117,23 @@ rownames(q3Data) <- c('NAD', 'AD','Margin')
 knitr::kable(q3Data)
 ```
 
+Attributable risk = $P(LD|AD) - P(LD|NAD) = P(0.10) - P(0.04)$. In other words, the additional risk for having a learning disability one faces if one has anxiety vs not:
+```{r}
+(40/170)
+(100/830) 
+0.2352941 - 0.1204819
+```
+So the risk for a learning disability is ~11% greater if you have an anxiety disorder vs if you don't.
+
+The standard error is $\Bigg( \dfrac {P_1(1 - P_1)} {n_1} + \dfrac {P_2(1 - P_2)} {n_2} \Bigg)^{1/2}$
+```{r}
+# get SE
+((0.2352941 * (1 - 0.2352941) / 170) + 
+ (0.1204819 * (1 - 0.1204819) / 830))^0.5
+# CI Lower
+0.11 - (1.96 * 0.0344396)
+# CI Upper
+0.11 + (1.96 * 0.0344396)
+```
+
+##
