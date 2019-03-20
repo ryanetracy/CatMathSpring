@@ -432,6 +432,7 @@ $$m(x) = \dfrac {1} {1 + e^{-x}}.$$
 Identify any layers:
 $$m(x) = \dfrac {1} {A}, \ A = 1 + e^B, \ B = -x.$$
 take the derivative of each layer:
+
 #### First layer:
 $$m'(x) = \dfrac {d} {dA} \Big(\dfrac {1} {A} \Big) = \dfrac {-1} {A^2}.$$
 Substitute:
