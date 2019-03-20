@@ -113,8 +113,8 @@ knitr::kable(q3Data)
 ```
 
 AR is 0.11, CI around AR is (0.04, 0.18)\newline
-RR is 1.95, log RR is 0.17, CI around log RR is (1.63, 2.28)\newline
-OR is 2.25, log OR is 0.81, CIs around log OR is (0.40, 1.22)\newline
+RR is 1.95,the CIs around the RR are (5.08, 9.78). The log RR is 0.17, CI around log RR is (1.63, 2.28)\newline
+OR is 2.25, the CIs are (1.49, 3.40). The log OR is 0.81, CIs around log OR is (0.40, 1.22)\newline
 
 ### Check with GLM
 ```{r}
@@ -130,6 +130,13 @@ Double check the confidence interval as well:
 confint.default(q3_mod)
 ```
 
+### Which is preferable?
+
+Odds ratio is probably most appropriate. 
+
+Whether or not the risk ratio is appropriate depends on the nature of the study. Whether or not this is a retrospective study could change the meaning of the cells; if this were retrospective i.e. the study is asking "of those who developed learning disorders, how many of them had anxiety disorders", then the probability calculated for $P(\text{LD|AD})$ might in actually represent $P(\text{AD|LD})$, which doesn't allow for calculation of a risk ratio. In such a case, you'd want to go with the odds ratio, which doesn't suffer from such a limitation.
+
+This leaves us with odds ratio vs attributable risk. AR does not work well when events are rare, which they arguably are. You only had a ~0.12 probability of developing LD if you were in the LAD group, and a ~0.24 probability if you were in the AD group. The AR difference of ~0.11 belies the fact that those in the AD group were twice as likely to have LD compared to those in the NAD group. The OR is therefore much more informative of the increased risk of LD for those with AD than attributable risk is, and since the circumstances allow us to use the OR as an aproximation of the RR, we also have an intuitive interpretation of the difference.  
 
 ## Work 
 
@@ -162,14 +169,21 @@ But risk ratios are not central-limit-theorem friendly, so in order to make infe
 ```{r}
 log(0.2352941 / 0.1204819)
 ```
-The SE is given as $\sqrt{\Bigg( \dfrac {1 - P_1} {n_1 P_1} + \dfrac {1 - P_2} {n_2 P_2} \Bigg)}$:
-```{r}
+The SE for the log RR is given as $\sqrt{\Bigg( \dfrac {1 - P_1} {n_1 P_1} + \dfrac {1 - P_2} {n_2 P_2} \Bigg)}$:
+```{r, results="hold"}
 # Get SE
 sqrt((1 - 0.2352941) / (170 * 0.2352941) + (1 - 0.1204819) / (830 * 0.1204819))
 # CI lower
 1.952941 - (1.96 * 0.1670713)
 # CI upper
 1.952941 + (1.96 * 0.1670713)
+```
+To get the CIs around the non-logged RR, exponentiate the CIs from the logged RR:
+```{r, results = "hold"}
+# CI lower
+exp(1.952941 - (1.96 * 0.1670713))
+# CI upper
+exp(1.952941 + (1.96 * 0.1670713))
 ```
 
 ### Odds Ratio and CIs for log OR
@@ -179,7 +193,7 @@ Odds ratio = $\dfrac {P(\text {LD|AD})} {P(\text{LD|NAD})} \times \dfrac {1 - P(
 ```
 Odds ratio is not so great for inferences due to long tail; get CIs for log odds instead.
 
-The SE is $\sqrt{\frac {1} {n_{11}} + \frac {1}{n_{12}} + \frac {1}{n_{21}} + \frac {1}{n_{22}} }$.
+The SE for the log odds is $\sqrt{\frac {1} {n_{11}} + \frac {1}{n_{12}} + \frac {1}{n_{21}} + \frac {1}{n_{22}} }$.
 ```{r}
 # get SE
 sqrt((1/730) + (1/100) + (1/130) + (1/40))
@@ -190,6 +204,19 @@ log(2.246154) - (1.96 * 0.2099099)
 # CI upper
 log(2.246154) + (1.96 * 0.2099099)
 ```
+To get the CIs around the non-logged OR, exponentiate the CIs from the logged OR:
+```{r, results = "hold"}
+# CI lower
+exp(log(2.246154) - (1.96 * 0.2099099))
+# CI upper
+exp(log(2.246154) + (1.96 * 0.2099099))
+```
 
+The odds ratio approximates the risk ratio when the second term of the odds ratio formula is close to 1, which it is in this case (1.150139):\newline
+$\dfrac {P(\text {LD|AD})} {P(\text{LD|NAD})} \times \dfrac {1 - P(\text{LD|NAD})} {1 - P(\text{LD|AD)}}$ \newline
+$\dfrac {0.2352941} {0.1204819} \times \dfrac {1 - 0.1204819} {1 - 0.2352941}$\newline
+```{r}
+(1 - 0.1204819) / (1 - 0.2352941)
+```
 
 
