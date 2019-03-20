@@ -7,7 +7,7 @@ output:
   pdf_document: 
     latex_engine: xelatex
   word_document: default
-header-includes: \usepackage{tikz,xcolor,listings}
+header-includes: \usepackage{tikz,xcolor,listings,setspace}
 ---
 `r knitr::opts_knit$set(root.dir='..')`
 
@@ -23,8 +23,6 @@ np <- reticulate::import("numpy")
 sympy <- reticulate::import_from_path("sympy", path = "/anaconda3/lib/python3.7/site-packages")
 ```
 
-
-3.15 (do not verify for 3.15d)
 
 # 3.9
 ## (a)
@@ -52,7 +50,7 @@ print(solveset(Eq(-3.556 + 0.0532*x)), 0.50)
 ```
 Therefore, when x = 66.84, $\hat \pi = 0.50$. According to the model, there is a 50/50 shot of owning a travel card for those who make around 66.86 million lira.
 
-```{r}
+```{r, echo=FALSE}
 italianData <- as.data.frame(matrix(c(24, 27, 28, 29, 30, 31, 32, 33,
                                       34, 35, 38, 39, 40, 41, 42, 45,
                                       48, 49, 50, 52, 59, 60, 65, 68,
@@ -70,7 +68,7 @@ italianData <- as.data.frame(matrix(c(24, 27, 28, 29, 30, 31, 32, 33,
 colnames(italianData) <- c("Inc", 'NumCases', 'CreditCards')
 knitr::kable(italianData)
 q9_fit <- glm(cbind(CreditCards,NumCases - CreditCards) ~ Inc, italianData, family=binomial(link="logit"))
-"glm((CreditCards,NumCases - CreditCards) ~ Inc,  family=binomial(link='logit'))"
+q9_fit$formula
 summary(q9_fit)$coefficients
 ```
 
@@ -87,15 +85,18 @@ exp(-2.38 + (1.733 * 1))
 ```
 
 ## (b)
-The wald confidence interval for poisson data is $\hat \beta \pm z_{\alpha/2} (SE)$. $\hat \beta$ is the log of the ratio between the two means. Therefore:
-```{r}
+The wald confidence interval for poisson data is $\hat \beta \pm z_{\alpha/2} (SE)$. $\hat \beta$ is the log of the ratio between the two means. Substituting these in, the lower bound is
+```{r, echo=FALSE}
 # CI Lower:
 log(0.522/0.092) - 1.96 * 0.147
+```
+and upper bound is 
+```{r, echo=FALSE}
 # CI Upper:
 log(0.522/0.092) + 1.96 * 0.147
 ```
 ## (c)
-The negative binomial is model is more believable because overdispersion is likely biasing our Poisson coefficients. We know we have overdispersion because in Poisson models, the mean should equal the variance, but in our case the variances for both blacks (1.150) and whites (0.155) are much, much greater taen their group means (0.522 and 0.092, respectively). 
+The negative binomial is model is more believable because overdispersion is likely biasing our Poisson coefficients. We know we have overdispersion because in Poisson models, the mean should equal the variance, but in our case the variances for both blacks (1.150) and whites (0.155) are much, much greater than their group means (0.522 and 0.092, respectively). 
 
 ## (d)
 $\hat D$, the dispersion index of the negative binomial model, is 4.94, which indicates a huge discrepancy between the observed dispersion and the dispersion assumed by the Poisson model (i.e. $D$ = 0). If $\hat D$ had turned out to be close to zero, then Poisson would be appropriate.
@@ -103,7 +104,7 @@ $\hat D$, the dispersion index of the negative binomial model, is 4.94, which in
 # Question 3, AD Data
 
 **Answer:** \newline
-```{r}
+```{r, echo=FALSE}
 q3Data <- as.data.frame(matrix(c(730,130,860,
                     100, 40, 140,
                     830,170,1000), ncol = 3))
@@ -114,41 +115,145 @@ knitr::kable(q3Data)
 
 AR is 0.11, CI around AR is (0.04, 0.18)\newline
 RR is 1.95,the CIs around the RR are (5.08, 9.78). The log RR is 0.17, CI around log RR is (1.63, 2.28)\newline
-OR is 2.25, the CIs are (1.49, 3.40). The log OR is 0.81, CIs around log OR is (0.40, 1.22)\newline
+OR is 2.25, the CIs are (1.49, 3.39). The log OR is 0.81, CIs around log OR is (0.40, 1.22)\newline
 
-### Check with GLM
-```{r}
+### Check OR with GLM
+```{r, echo=FALSE}
 q3_mod <- glm(cbind(c(40, 130),c(100, 730)) ~ as.factor(c(1, 0)), q3Data, family = binomial())
+q3_mod$formula
 q3_mod$coefficients
 ```
 The coefficient is the logit, so exponentiate the coeficient to get the odds ratio:
-```{r}
+```{r, echo=FALSE}
 exp(q3_mod$coefficients)
 ```
-Double check the confidence interval as well:
-```{r}
+Double check the confidence interval as well.\newline
+For log OR:
+```{r, echo=FALSE}
 confint.default(q3_mod)
+```
+For OR:
+```{r, echo=FALSE}
+exp(confint.default(q3_mod))
 ```
 
 ### Which is preferable?
+\begin{doublespace}
+Odds ratio is probably most appropriate.
 
-Odds ratio is probably most appropriate. 
-
-Whether or not the risk ratio is appropriate depends on the nature of the study. Whether or not this is a retrospective study could change the meaning of the probabiities; if this were retrospective i.e. the study is asking "of those who developed learning disorders, how many of them had anxiety disorders", then the probability calculated for $P(\text{LD|AD})$ might in actually represent $P(\text{AD|LD})$, which doesn't allow for calculation of a true risk ratio. In such a case, you'd want to go with the odds ratio, which doesn't suffer from such a limitation and allows for estimation of the risk ratio for prospective, cross-sectional, *and* retrospective studies. We're safe with the odds ratio no matter which of the three this data come from.
+\setlength{\parindent}{5ex}
+Whether or not the risk ratio is appropriate depends on the nature of the study. Whether or not this is a retrospective study could change the meaning of the probabiities; if this were retrospective i.e. the study is asking "of those who developed learning disorders, how many of them had anxiety disorders", then the probability calculated for $P(\text{LD|AD})$ might in actuality represent $P(\text{AD|LD})$, which doesn't allow for calculation of a true risk ratio. In such a case, you'd want to go with the odds ratio, which doesn't suffer from such a limitation and allows for estimation of the risk ratio for prospective, cross-sectional, and retrospective studies. We're safe with the odds ratio no matter which of the three this data come from.
 
 This leaves us with odds ratio vs attributable risk. AR does not work well when events are rare, which they arguably are in this case. You only had a ~0.12 probability of developing LD if you were in the LAD group, and a ~0.24 probability if you were in the AD group. The attributable risk difference of ~0.11 belies the fact that those in the AD group were twice as likely to have LD compared to those in the NAD group. The OR is therefore much more informative of the increased risk of LD for those with AD than attributable risk is, and since the circumstances allow us to use the OR as an aproximation of the RR, we also have an intuitive interpretation of the difference.   
+\end{doublespace}
+
+\newpage
+
+\begin{center}
+\LARGE\bfseries Appendix
+\end{center}
+
+# 3.9
+## (a)
+N/A
+
+## (b)
+N/A
+
+## (c)
+
+```{python, results ="hide"}
+# Check Work
+import sympy
+from sympy import *
+from sympy import Symbol
+x = Symbol('x')
+# Solve
+print(solveset(Eq(-3.556 + 0.0532*x)), 0.50)
+```
+
+```{r, fig.show="hide", results="hide"}
+italianData <- as.data.frame(matrix(c(24, 27, 28, 29, 30, 31, 32, 33,
+                                      34, 35, 38, 39, 40, 41, 42, 45,
+                                      48, 49, 50, 52, 59, 60, 65, 68,
+                                      70, 79, 80, 84, 94, 120, 130,
+                                      
+                                      1, 1, 5, 3, 9, 5, 8, 1,
+                                      7, 1, 3, 2, 5, 2, 2, 1,
+                                      1, 1, 10, 1, 1, 5, 6, 3,
+                                      5, 1, 1, 1, 1, 6, 1,
+
+                                      0, 0, 2, 0, 1, 1, 0, 0,
+                                      1, 1, 1, 0, 0, 0, 0, 1,
+                                      0, 0, 2, 0, 0, 2, 6, 3,
+                                      3, 0, 0, 0, 0, 6, 1), ncol = 3))
+colnames(italianData) <- c("Inc", 'NumCases', 'CreditCards')
+knitr::kable(italianData)
+q9_fit <- glm(cbind(CreditCards,NumCases - CreditCards) ~ Inc, 
+              italianData, 
+              family=binomial(link="logit"))
+"glm((CreditCards,NumCases - CreditCards) ~ Inc,  
+family=binomial(link='logit'))"
+summary(q9_fit)$coefficients
+```
+
+
+# 3.15
+## (a)
+N/A
+
+## (b)
+
+**Work:**
+```{r}
+# CI Lower:
+log(0.522/0.092) - 1.96 * 0.147
+# CI Upper:
+log(0.522/0.092) + 1.96 * 0.147
+```
+## (c)
+N/A
+
+## (d)
+N/A
+
+# Question 3, AD Data
+
+**Answer:** \newline
+```{r, fig.show="hide", results = "hide"}
+q3Data <- as.data.frame(matrix(c(730,130,860,
+                    100, 40, 140,
+                    830,170,1000), ncol = 3))
+colnames(q3Data) <- c("NLD", 'LD', 'Margin')
+rownames(q3Data) <- c('NAD', 'AD','Margin')
+knitr::kable(q3Data)
+```
+
+### Check with GLM
+```{r, results="hide"}
+q3_mod <- glm(cbind(c(40, 130),c(100, 730)) ~ as.factor(c(1, 0)), 
+              q3Data, 
+              family = binomial())
+q3_mod$coefficients
+```
+The coefficient is the logit, so exponentiate the coeficient to get the odds ratio:
+```{r, results="hide"}
+exp(q3_mod$coefficients)
+```
+Double check the confidence interval as well:
+```{r, results="hide"}
+confint.default(q3_mod)
+```
 
 ## Work 
 
 ### Attributable Risk and CIs for AR 
 Attributable risk = $P(LD|AD) - P(LD|NAD)$. In other words, the additional risk for having a learning disability one faces if one has anxiety vs not:
 ```{r}
-(40/170)
-(100/830) 
-0.2352941 - 0.1204819
+(40/170) - (100/830) 
 ```
 
-The standard error is $\sqrt{\Bigg( \dfrac {P_1(1 - P_1)} {n_1} + \dfrac {P_2(1 - P_2)} {n_2} \Bigg)}$
+The standard error is $\sqrt{\Bigg( \dfrac {P_1(1 - P_1)} {n_1} + \dfrac {P_2(1 - P_2)} {n_2} \Bigg)}$:
 ```{r}
 # get SE
 ((0.2352941 * (1 - 0.2352941) / 170) + 
@@ -161,7 +266,7 @@ The standard error is $\sqrt{\Bigg( \dfrac {P_1(1 - P_1)} {n_1} + \dfrac {P_2(1 
 
 ### Risk Ratio and CIs for log RR
 
-Risk ratio = $\dfrac {P(LD|AD)} {P(LD|NAD)}$
+Risk ratio = $\dfrac {P(LD|AD)} {P(LD|NAD)}$:
 ```{r}
 0.2352941 / 0.1204819
 ```
@@ -170,7 +275,7 @@ But risk ratios are not central-limit-theorem friendly, so in order to make infe
 log(0.2352941 / 0.1204819)
 ```
 The SE for the log RR is given as $\sqrt{\Bigg( \dfrac {1 - P_1} {n_1 P_1} + \dfrac {1 - P_2} {n_2 P_2} \Bigg)}$:
-```{r, results="hold"}
+```{r}
 # Get SE
 sqrt((1 - 0.2352941) / (170 * 0.2352941) + (1 - 0.1204819) / (830 * 0.1204819))
 # CI lower
@@ -179,7 +284,7 @@ sqrt((1 - 0.2352941) / (170 * 0.2352941) + (1 - 0.1204819) / (830 * 0.1204819))
 1.952941 + (1.96 * 0.1670713)
 ```
 To get the CIs around the non-logged RR, exponentiate the CIs from the logged RR:
-```{r, results = "hold"}
+```{r}
 # CI lower
 exp(1.952941 - (1.96 * 0.1670713))
 # CI upper
@@ -193,7 +298,7 @@ Odds ratio = $\dfrac {P(\text {LD|AD})} {P(\text{LD|NAD})} \times \dfrac {1 - P(
 ```
 Odds ratio is not so great for inferences due to long tail; get CIs for log odds instead.
 
-The SE for the log odds is $\sqrt{\frac {1} {n_{11}} + \frac {1}{n_{12}} + \frac {1}{n_{21}} + \frac {1}{n_{22}} }$.
+The SE for the log odds is $\sqrt{\frac {1} {n_{11}} + \frac {1}{n_{12}} + \frac {1}{n_{21}} + \frac {1}{n_{22}} }$:
 ```{r}
 # get SE
 sqrt((1/730) + (1/100) + (1/130) + (1/40))
@@ -205,18 +310,16 @@ log(2.246154) - (1.96 * 0.2099099)
 log(2.246154) + (1.96 * 0.2099099)
 ```
 To get the CIs around the non-logged OR, exponentiate the CIs from the logged OR:
-```{r, results = "hold"}
+```{r}
 # CI lower
 exp(log(2.246154) - (1.96 * 0.2099099))
 # CI upper
 exp(log(2.246154) + (1.96 * 0.2099099))
 ```
 
-The odds ratio approximates the risk ratio when the second term of the odds ratio formula is close to 1, which it is in this case (1.150139):\newline
-$\dfrac {P(\text {LD|AD})} {P(\text{LD|NAD})} \times \dfrac {1 - P(\text{LD|NAD})} {1 - P(\text{LD|AD)}}$ \newline
-$\dfrac {0.2352941} {0.1204819} \times \dfrac {1 - 0.1204819} {1 - 0.2352941}$\newline
+The odds ratio approximates the risk ratio when the second term of the odds ratio formula is close to 1, which it is in this case (1.150139):
+$$\dfrac {P(\text {LD|AD})} {P(\text{LD|NAD})} \times \dfrac {1 - P(\text{LD|NAD})} {1 - P(\text{LD|AD)}}$$ 
+$$\dfrac {0.2352941} {0.1204819} \times \dfrac {1 - 0.1204819} {1 - 0.2352941}$$
 ```{r}
 (1 - 0.1204819) / (1 - 0.2352941)
 ```
-
-
