@@ -1,0 +1,178 @@
+---
+title: "MFSS Homework  7"
+author: "Ryan Tracy"
+date: "5/12/2019"
+output: pdf_document
+header-includes: 
+  - \usepackage{amsmath}
+---
+
+#7.1
+
+##a.
+$$R^6 \to R$$
+
+This can be mapped as a regression:
+
+$$f(x_{1}, x_{2}, x_{3}, x_{4}, x_{5}, x_{6}) = \alpha + \beta_{1}x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6}$$
+
+#7.3
+
+##a.
+$$\lim_{(x,y) \to (3,1)} \dfrac{x^2 - xy + 6y^2}{x - 3y}$$
+$$= \lim_{(x,y) \to (3,1)} \dfrac{(x - 3y)(x + 2y)}{x - 3y}$$
+$$= \lim_{(x,y) \to (3,1)} (x + 2y)$$
+$$3 + 2(1) = 5$$
+
+#7.6
+
+$$f(x,y) = -x^2 + xy - y^2 + 2x + y$$
+
+##a.
+To find the gradient, take the first partial derivatives of x and y
+The first partial derivative w/r/t x is
+$$\dfrac{\partial f(x,y)}{\partial x} = \dfrac{\partial}{\partial x} \bigg(-x^2 + xy - y^2 + 2x + y \bigg) = -2x + y + 2$$
+The first partial derivative w/r/t y is
+$$\dfrac{\partial f(x,y)}{\partial y} = \dfrac{\partial}{\partial y} \big(-x^2 + xy - y^2 + 2x + y \big) = x - 2y + 1$$
+Then the gradient of $f(x,y)$
+$$\nabla f(x,y) = \begin{bmatrix} -2x + y + 2 \\ x - 2y + 1 \end{bmatrix}$$
+
+##b.
+First solve the system of the equations
+$$-2x + y + 2 = 0$$
+$$x - 2y +1 = 0$$
+ 
+starting with the top equation for y
+$$y = 2x - 2$$
+Then plug that in for y in the second equation
+$$x - 2(2x - 2) + 1 = 0$$
+$$x - 4x + 4 + 1 = 0$$
+$$-3x + 5 = 0$$
+$$3x = 5$$
+$$x = \frac{5}{3}$$
+Then plug this solution back into the first equation
+$$y = 2(\frac{5}{3}) - 2$$
+$$y = \frac{10}{3} - \frac{6}{3} = \frac{4}{3}$$
+The pair $\bigg(\frac{5}{3}, \frac{4}{3}\bigg)$ is thus a critical point for the function. This is the only critical point, as it's the only possible value of x and implies only one possible value of y.
+
+##c.
+Finding the Hessian involves finding the second derivatives
+First take the second partial derivative w/r/t x and x again
+$$\dfrac{f(x,y)}{\partial x} = \dfrac{\partial}{\partial x} \bigg(-2x + y + 2 \bigg) = -2$$
+Take the second partial derivative w/r/t y and y again
+$$\dfrac{\partial f(x,y)}{\partial y} = \dfrac{\partial}{\partial y} \bigg(x - 2y + 1 \bigg) = -2$$
+Then take the second partial derivative w/r/t x and then y
+$$\dfrac{\partial f(x,y)}{\partial y} = \dfrac{\partial}{\partial y} \bigg(-2x + y + 2 \bigg) = 1$$
+The Hessian is thus
+$$H\bigg(f(x,y)\bigg) = \begin{bmatrix} -2 & 1 \\ 1 & -2 \end{bmatrix}$$
+
+##d.
+First, check whether
+$$f_{xx}(-1, -4)f_{yy}(-1, -4) - f_{xy}(-1, -4)^2 > 0$$
+$$(-2)(-2) - (1)^2 > 0$$
+$$4 - 1 > 0$$
+$$3 > 0$$
+This meets the first condition, so now check the sign of
+$$f_{xx}(-1, -4) + f_{yy}(-1, -4) = -2 + -2 = -4 < 0$$
+Therefore, the critical point represents a local maximum
+
+#7.7
+Maximize the function
+$$f(x,y) = 150x^{1/3}y^{2/3}$$
+with the constraint that 
+$$300x + 500y = 100000$$
+To apply the Lagrange multipliers, find the gradient of $f(x,y)$
+The partial derivative w/r/t x is
+$$f_{x}(x,y) = \dfrac{\partial}{\partial x}(150x^{1/3}y^{2/3})$$
+$$= 150y^{2/3}\dfrac{\partial}{\partial x}(x^{1/3})$$
+$$= 150y^{2/3}\bigg(\frac{1}{3}x^{-2/3}\bigg)$$
+$$= \dfrac{50y^{2/3}}{x^{2/3}}$$
+
+The partial derivative w/r/t y is
+$$f_{y}(x,y) = \dfrac{\partial}{\partial y}(150x^{1/3}y^{2/3})$$
+$$= 150x^{1/3}\dfrac{\partial}{\partial y}(y^{2/3})$$
+$$= 150x^{2/3}\bigg(\frac{2}{3}y^{-1/3}\bigg)$$
+$$= \dfrac{100x^{1/3}}{y^{1/3}}$$
+The gradient is
+$$\nabla f(x,y) = \begin{bmatrix} \dfrac{50y^{2/3}}{x^{2/3}} \\ \dfrac{100x^{1/3}}{y^{1/3}} \end{bmatrix}$$
+This function has no critical points, since (0, 0) does not make the gradient's elements equal to zero since it would place a 0 in the denominator of each derivative
+
+Write the constraint function
+$$g(x,y) = 300x + 500y$$
+The gradient of $g(x,y)$ would then be
+$$\nabla g(x,y) = \begin{bmatrix} 300 \\ 500 \end{bmatrix}$$
+
+Now create a system of three equations
+$$\dfrac{50y^{2/3}}{x^{2/3}} = 30\lambda$$
+$$\dfrac{100x^{1/3}}{y^{1/3}} = 500\lambda$$
+$$300x + 500y = 100000$$
+
+Where the first two equations need to be solved for $\lambda$
+For the first equation
+$$\dfrac{50y^{2/3}}{x^{2/3}} = 30\lambda$$
+$$= \dfrac{50y^{2/3}}{x^{2/3}}\frac{1}{300} = \lambda$$
+$$= \dfrac{y^{2/3}}{6x^{2/3}} = \lambda$$
+And the second equation
+$$\dfrac{100x^{1/3}}{y^{1/3}} = 500\lambda$$
+$$\dfrac{100x^{1/3}}{y^{1/3}}\frac{1}{500} = \lambda$$
+$$\dfrac{x^{1/3}}{5y^{1/3}} = \lambda$$
+Then set them equal to each other
+$$\dfrac{y^{2/3}}{6x^{2/3}} = \dfrac{x^{1/3}}{5y^{1/3}}$$
+$$(y^{2/3})(5y^{1/3}) = (x^{1/3})(6x^{2/3})$$
+$$5y = 6x$$
+$$y = \frac{6}{5}x$$
+Then substitute y in for the last equation
+$$300x + 500\bigg(\frac{6}{5}x \bigg) = 100000$$
+$$300x + 600x = 100000$$
+$$900x = 100000$$
+$$x = \frac{100000}{900} = 111.11$$
+Then calculate y
+$$y = \frac{6}{5}(111.11) = 133.33$$
+Since there are no critical points to compare to, the value of the Cobb-Douglas production function at this point is
+$$f(111.11, 133.33) = 150(111.11)^{1/3}(133.33)^{2/3} = 18820.34$$
+
+Since any other point on this line produces a lower value of $f(x,y)$ than $f(111.11, 133.33)$, the firm would maximizes its profits by spending its resources on 111.11 labor units and 133.33 capital units.
+
+#7.10
+Variables
+$V(X) = 4$
+$V(Y) = 9$
+$Cov(X,Y) = 5$
+Equations
+$A = 3X - 3Y + 7$
+$B = 5 - 2X + Y$
+
+##a.
+$$Corr(X,Y) = \dfrac{Cov(X,Y)}{SD(X)SD(Y)}$$
+$$= \dfrac{Cov(X,Y)}{\sqrt{V(X)}\sqrt{V(Y)}}$$
+$$= \dfrac{5}{\sqrt{4}\sqrt{9}}$$
+$$= \frac{5}{2 * 3} = \frac{5}{6} = .833$$
+
+##b.
+$$V(A) = V(3X - 3Y + 7)$$
+$$V(A) = V(3X - 3Y)$$
+$$V(aX + bY) = a^2V(X) + b^2V(Y) - 2abCov(X,Y)$$
+$$= (3)^2V(X) + (-3)^2V(Y) - 2(3)(-3)Cov(X,Y)$$
+$$ = 9(4) + 9(9) + 18(5) = 207$$
+
+##c.
+$$V(B) = V(5 - 2X + Y)$$
+$$V(B) = V(-2X + Y)$$
+$$V(aX + bY) = a^2V(X) + b^2V(Y) - 2abCov(X,Y)$$
+$$= (-2)^2V(X) + (1)^2V(Y) - 2(-2)(1)Cov(X,Y)$$
+$$ = 4(4) + 9 + 4(5) = 45$$
+
+##d.
+$$Cov(A,B) = Cov\bigg(3X - 3Y + 7, 5 - 2X + Y \bigg)$$
+$$Cov(A,B) = Cov\bigg(3X - 3Y, -2X + Y \bigg)$$
+$$Cov(aX + bY,\ cW + dZ) = acCov(X,W) + adCov(X,Z) + bcCov(Y,W) + bdCov(Y,Z)$$
+$$Cov(3X - 3Y,\ -2X + Y) = (3)(-2)Cov(X,X) + (3)(1)Cov(X,Y) + (-3)(-2)Cov(Y,X) + (-3)(1)Cov(Y,Y)$$
+$$= -6Cov(X,X) + 3Cov(X,Y) + 6Cov(Y,X) - 3Cov(Y,Y)$$
+$$= -6Cov(X,X) + 9Cov(X,Y) - 3Cov(Y,Y)$$
+$$= -6V(X) + 9Cov(X,Y) - 3V(Y)$$
+$$-6(4) + 9(5) - 3(9) = -6$$
+
+##e.
+$$Corr(A,B) = \dfrac{Cov(A,B)}{SD(A)SD(B)}$$
+$$= \dfrac{Cov(A,B)}{\sqrt{V(A)}\sqrt{V(B)}}$$
+$$= \dfrac{-6}{\sqrt{207}\sqrt{45}} = -.06$$

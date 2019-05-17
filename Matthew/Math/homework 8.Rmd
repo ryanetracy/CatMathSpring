@@ -1,0 +1,113 @@
+---
+title: "MFSS Homework 8"
+author: "Ryan Tracy"
+date: "5/12/2019"
+output: pdf_document
+header-includes: 
+  - \usepackage{amsmath}
+---
+
+#8.3
+$$A = \begin{bmatrix} -1 \\ 3 \\ 4 \end{bmatrix}$$
+$$B = \begin{bmatrix} 3 \\ -2 \\ 1 \end{bmatrix}$$
+$$C = \begin{bmatrix} 3 & 2 & -4 \\ -8 & 0 & 6 \end{bmatrix}$$
+$$D = \begin{bmatrix} 6 & -2 \\ -1 & 3 \\ -3 & 8 \end{bmatrix}$$
+
+##a.
+$$3A - 2B$$
+First, find 3A
+$$3A = 3\begin{bmatrix} -1 \\ 3 \\ 4 \end{bmatrix}$$
+$$= \begin{bmatrix} -1(3) \\ 3(3) \\ 4(3) \end{bmatrix}$$
+$$= \begin{bmatrix} -3 \\ 9 \\ 12 \end{bmatrix}$$
+Then find 2B
+$$2B = 2\begin{bmatrix} 3 \\ -2 \\ 1 \end{bmatrix}$$
+$$= \begin{bmatrix} 3(2) \\ -2(2) \\ 1(2) \end{bmatrix}$$
+$$= \begin{bmatrix} 6 \\ -4 \\ 2 \end{bmatrix}$$
+Then solve
+$$3A - 2B = \begin{bmatrix} -3 \\ 9 \\ 12 \end{bmatrix} - \begin{bmatrix} 6 \\ -4 \\ 2 \end{bmatrix} = \begin{bmatrix} -3-6 \\ 9-(-4) \\ 12-2 \end{bmatrix} = \begin{bmatrix} -9 \\ 13 \\ 10 \end{bmatrix}$$
+
+##b.
+$$A \cdot B = \begin{bmatrix} -1 \\ 3 \\ 4 \end{bmatrix} \cdot \begin{bmatrix} 3 \\ -2 \\ 1 \end{bmatrix} = (-1 \times 3) + (3 \times -2) + (4 \times 1) = -3-6+4 = -5$$
+
+##c.
+$$A \times B = \begin{bmatrix} -1 \\ 3 \\ 4 \end{bmatrix} \times \begin{bmatrix} 3 \\ -2 \\ 1 \end{bmatrix} = \begin{bmatrix} -1 \times 3 & -1 \times -2 & -1 \times 1 \\ 3 \times 3 & 3 \times -2 & 3 \times 1 \\ 4 \times 3 & 4 \times -2 & 4 \times 1 \end{bmatrix} = \begin{bmatrix} -3 & 2 & -1 \\ 9 & -6 & 3 \\ 12 & -8 & 4 \end{bmatrix}$$
+
+##d.
+$$CA = \begin{bmatrix} 3 & 2 & -4 \\ -8 & 0 & 6 \end{bmatrix} \begin{bmatrix} -1 \\ 3 \\ 4 \end{bmatrix} = \begin{bmatrix} (3 \times -1) + (2 \times 3) + (-4 \times 4) \\ (-8 \times -1) + (0 \times 3) + (6 \times 4) \end{bmatrix} = \begin{bmatrix} -13 \\ 32 \end{bmatrix}$$
+
+##e.
+$BD$ cannot be multiplied, as the inner dimensions do not match
+
+##f.
+$$B \otimes D = \begin{bmatrix} 3 \\ -2 \\ 1 \end{bmatrix} \otimes \begin{bmatrix} 6 & -2 \\ -1 & 3 \\ -3 & 8 \end{bmatrix} = \begin{bmatrix} 3\begin{bmatrix} 6 & -2 \\ -1 & 3 \\ -3 & 8 \end{bmatrix} \\ -2\begin{bmatrix} 6 & -2 \\ -1 & 3 \\ -3 & 8 \end{bmatrix} \\ 1\begin{bmatrix} 6 & -2 \\ -1 & 3 \\ -3 & 8 \end{bmatrix} \end{bmatrix} = \begin{bmatrix} 18 & -6 \\ -3 & 9 \\ -9 & 24 \\ -12 & 4 \\ 2 & -6 \\ 6 & -16 \\ 6 & -2 \\ -1 & 3 \\ -3 & 8 \end{bmatrix}$$
+
+##g.
+$$CD = \begin{bmatrix} 3 & 2 & -4 \\ -8 & 0 & 6 \end{bmatrix} \begin{bmatrix} 6 & -2 \\ -1 & 3 \\ -3 & 8 \end{bmatrix} = \begin{bmatrix} (3 \times 6) + (2 \times -1) + (-4 \times - 3) & (3 \times -2) + (2 \times 3) + (-4 \times 8) \\ (-8 \times 6) + (0 \times -1) + (6 \times -3) & (-8 \times -2) + (0 \times 3) + (6 \times 8) \end{bmatrix} = \begin{bmatrix} 28 & -32 \\ -66 & 64 \end{bmatrix}$$
+
+##h.
+$$DC = \begin{bmatrix} 6 & -2 \\ -1 & 3 \\ -3 & 8 \end{bmatrix} \begin{bmatrix} 3 & 2 & -4 \\ -8 & 0 & 6 \end{bmatrix} = \begin{bmatrix} (6 \times 3) + (-2 \times -8) & (6 \times 2) + (-2 \times 0) & (6 \times -4) + (-2 \times 6) \\ (-1 \times 3) + (3 \times -8) & (-1 \times 2) + (3 \times 0) & (-1 \times -4) + (3 \times 6) \\ (-3 \times 3) + (8 \times -8) & (-3 \times 2) + (8 \times 0) & (-3 \times -4) + (8 \times 6) \end{bmatrix} = \begin{bmatrix} 34 & 12 & -36 \\ -27 & -2 & 22 \\ -73 & -6 & 60 \end{bmatrix}$$
+
+##i.
+$$C' = \begin{bmatrix} 3 & -8 \\ 2 & 0 \\ -4 & 6 \end{bmatrix}$$
+$$C'C = \begin{bmatrix} 3 & -8 \\ 2 & 0 \\ -4 & 6 \end{bmatrix} \begin{bmatrix} 3 & 2 & -4 \\ -8 & 0 & 6 \end{bmatrix} = \begin{bmatrix} (3 \times 3) + (-8 \times -8) & (3 \times 2) + (-8 \times 0) & (3 \times -4) + (-8 \times 6) \\ (2 \times 3) + (0 \times -8) & (2 \times 2) + (0 \times 0) & (2 \times -4) + (0 \times 6) \\ (-4 \times 3) + (6 \times -8) & (-4 \times 2) + (6 \times 0) & (-4 \times -4) + (6 \times 6) \end{bmatrix} = \begin{bmatrix} 73 & 6 & -60 \\ 6 & 4 & -8 \\ -60 & -8 & 52 \end{bmatrix}$$
+
+
+#8.4
+Part 3i is symmetric because it is a square matrix and the (1,2), (1,3), and (2,3) elements are equal to the (2,1), (3,1), and (3,2) elements.
+
+
+#8.8
+Turning the vector $\begin{bmatrix} 1 \\ -1 \end{bmatrix}$ $90^{\circ}$ yields a vector product of $\begin{bmatrix} -1 \\ -1 \end{bmatrix}$
+This can be done with a matrix such as $\begin{bmatrix} 4 & 5 \\ 6 & 7 \end{bmatrix}$
+$$\begin{bmatrix} 4 & 5 \\ 6 & 7 \end{bmatrix} \begin{bmatrix} 1 \\ -1 \end{bmatrix} = \begin{bmatrix} 4-5 \\ 6-7 \end{bmatrix} = \begin{bmatrix} -1 \\ -1 \end{bmatrix}$$
+
+
+#8.9
+For this, any multiple of $\begin{bmatrix} 2 \\ 4 \end{bmatrix}$ exists in the same direction. The matrix $\begin{bmatrix} 4 \\ 8 \end{bmatrix}$ accomplishes this. This could be found with a matrix such as $\begin{bmatrix} 0 & 1 \\ 2 & 1 \end{bmatrix}$
+$$\begin{bmatrix} 0 & 1 \\ 2 & 1 \end{bmatrix} \begin{bmatrix} 2 \\ 4 \end{bmatrix} = \begin{bmatrix} 0 + 4 \\ 4 + 4 \end{bmatrix} = \begin{bmatrix} 4 \\ 8 \end{bmatrix}$$
+
+
+#8.10
+
+##a.
+$$\begin{bmatrix} 2 & 1 & 6 \\ 8 & 4 & 3 \\ 12 & 1 & 4 \end{bmatrix}$$
+Multiply the first row by -4 and add it to the second row
+$$\begin{bmatrix} 2 & 1 & 6 \\ 0 & 0 & -21 \\ 12 & 1 & 4 \end{bmatrix}$$
+Then multiply the first row by -6 and add it to the third row
+$$\begin{bmatrix} 2 & 1 & 6 \\ 0 & 0 & -21 \\ 0 & -5 & -32 \end{bmatrix}$$
+Swap the second and third rows
+$$\begin{bmatrix} 2 & 1 & 6 \\ 0 & -5 & -32 \\ 0 & 0 & -21 \end{bmatrix}$$
+And divide the third row by -21
+$$\begin{bmatrix} 2 & 1 & 6 \\ 0 & -5 & -32 \\ 0 & 0 & 1 \end{bmatrix}$$
+Multiply the third row by 32 and add it to the second row
+$$\begin{bmatrix} 2 & 1 & 6 \\ 0 & -5 & 0 \\ 0 & 0 & 1 \end{bmatrix}$$
+Then by -6 and add it to the first row
+$$\begin{bmatrix} 2 & 1 & 0 \\ 0 & -5 & 0 \\ 0 & 0 & 1 \end{bmatrix}$$
+Divide the second row by -5
+$$\begin{bmatrix} 2 & 1 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$$
+Then multiply it by -1 and add it to the first row
+$$\begin{bmatrix} 2 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$$
+Then divide the first row by 2
+$$\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$$
+
+
+#8.11
+Place the values of the dependent variable Y (income) in a $(10 \times 1)$ matrix, a $(10 \times 1)$ matrix with the errors, and a $(3 \times 1)$ matrix with the constant and $\beta$ coefficients
+$$Y = \begin{bmatrix} 9 \\ 5 \\ 4 \\ 7 \\ 4 \\ 6 \\ 5 \\ 7 \\ 2 \\ 5 \end{bmatrix}, \epsilon = \begin{bmatrix} \epsilon_{1} \\ \epsilon_{2} \\ \epsilon_{3} \\ \epsilon_{4} \\ \epsilon_{5} \\ \epsilon_{6} \\ \epsilon_{7} \\ \epsilon_{8} \\ \epsilon_{9} \\ \epsilon_{10} \end{bmatrix}, B = \begin{bmatrix} \alpha \\ \beta_{1} \\ \beta_{2} \end{bmatrix}$$
+Then create a matrix for the X variables that can be used in a matrix equation
+$$X = \begin{bmatrix} 1 & 0 & 8 \\ 1 & 0 & 6 \\ 1 & 1 & 7 \\ 1 & 1 & 8 \\ 1 & 1 & 3 \\ 1 & 0 & 4 \\ 1 & 1 & 6 \\ 1 & 0 & 3 \\ 1 & 1 & 5 \\ 1 & 0 & 4 \end{bmatrix}$$
+The regressio model is written as 
+$$Y = XB + \epsilon$$
+Or 
+$$Y = \begin{bmatrix} 9 \\ 5 \\ 4 \\ 7 \\ 4 \\ 6 \\ 5 \\ 7 \\ 2 \\ 5 \end{bmatrix} = \begin{bmatrix} 1 & 0 & 8 \\ 1 & 0 & 6 \\ 1 & 1 & 7 \\ 1 & 1 & 8 \\ 1 & 1 & 3 \\ 1 & 0 & 4 \\ 1 & 1 & 6 \\ 1 & 0 & 3 \\ 1 & 1 & 5 \\ 1 & 0 & 4 \end{bmatrix} \begin{bmatrix} \alpha \\ \beta_{1} \\ \beta_{2} \end{bmatrix} + \begin{bmatrix} \epsilon_{1} \\ \epsilon_{2} \\ \epsilon_{3} \\ \epsilon_{4} \\ \epsilon_{5} \\ \epsilon_{6} \\ \epsilon_{7} \\ \epsilon_{8} \\ \epsilon_{9} \\ \epsilon_{10} \end{bmatrix}$$
+When this is multiplied out, it results in the following system of equations:
+$$9 = 1\alpha + 0\beta_{1} + 8\beta_{2} + \epsilon_{1}$$
+$$5 = 1\alpha + 0\beta_{1} + 6\beta_{2} + \epsilon_{2}$$
+$$4 = 1\alpha + 1\beta_{1} + 7\beta_{2} + \epsilon_{3}$$
+$$7 = 1\alpha + 1\beta_{1} + 8\beta_{2} + \epsilon_{4}$$
+$$4 = 1\alpha + 1\beta_{1} + 3\beta_{2} + \epsilon_{5}$$
+$$6 = 1\alpha + 0\beta_{1} + 4\beta_{2} + \epsilon_{6}$$
+$$5 = 1\alpha + 1\beta_{1} + 6\beta_{2} + \epsilon_{7}$$
+$$7 = 1\alpha + 0\beta_{1} + 3\beta_{2} + \epsilon_{8}$$
+$$2 = 1\alpha + 1\beta_{1} + 5\beta_{2} + \epsilon_{9}$$
+$$5 = 1\alpha + 0\beta_{1} + 4\beta_{2} + \epsilon_{10}$$
